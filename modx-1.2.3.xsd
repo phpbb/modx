@@ -48,6 +48,7 @@
 													<xs:extension base="xs:string">
 														<xs:attribute name="type" form="unqualified" type="xmod:linkTypes" use="required" />
 														<xs:attribute name="href" form="unqualified" type="xs:string" use="required" />
+														<xs:attribute name="realname" form="unqualified" type="xs:string" use="optional" />
 														<xs:attribute name="lang" form="unqualified" type="xs:string" use="required" />
 													</xs:extension>
 												</xs:simpleContent>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- MODX by the phpBB MOD Team XSL file v1.2.2 copyright 2005-2009 the phpBB MOD Team.
+<!-- MODX by the phpBB MOD Team XSL file v1.2.3 copyright 2005-2009 the phpBB MOD Team.
 	This file is released under the GNU GPL version 2.  See license.txt.
 	$Id: modx.prosilver.en.xsl 2937 2009-04-28 00:13:55Z jelly_doughnut $ -->
 <!DOCTYPE xsl:stylesheet[
 	<!ENTITY nbsp "&#160;">
 ]>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:mod="http://www.phpbb.com/mods/xml/modx-1.2.2.xsd">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:mod="http://vilden.se/mods/xml/modx-1.2.3.xsd">
 	<xsl:output method="html" omit-xml-declaration="no" indent="yes" />
 	<xsl:variable name="title" select="mod:mod/mod:header/mod:title" />
 	<xsl:variable name="version">
@@ -292,7 +292,7 @@ legend {
 	font-weight:bold;
 	color:#115098;
 /*	position:relative;*/
-	text-transform:capitalize;
+/*	text-transform:capitalize;*/
 	line-height:1.00em;
 	top:0em;
 	vertical-align:middle;
@@ -591,16 +591,16 @@ document.onkeydown = mod_do_keypress;
 
 var host = "http://www.phpbb.com/mods/modx/i18n/";
 
-var enStrings = "h1=Installation Instructions for\n" +
+var enStrings = "h1=Installation instructions for\n" +
 "edt-show=Show&nbsp;&gt;&gt;\n" +
 "edt-hide=&lt;&lt;&nbsp;Hide\n" +
-"V=Version\n" +
+"V=version\n" +
 "t=Title:\n" +
 "d=Description:\n" +
 "aV=Version:\n" +
 "mint=minutes\n" +
-"it=Installation Time:\n" +
-"il=Installation Level:\n" +
+"it=Installation time:\n" +
+"il=Installation level:\n" +
 "ile=Easy\n" +
 "ili=Intermediate\n" +
 "ila=Advanced\n" +
@@ -614,34 +614,34 @@ var enStrings = "h1=Installation Instructions for\n" +
 "a-c-f=From\n" +
 "a-c-t=to\n" +
 "a-c-s=Since\n" +
-"fte=Files to Edit\n" +
-"icf=Included Files\n" +
+"fte=Files to edit\n" +
+"icf=Included files\n" +
 "icfn=No files have been included with this MOD.\n" +
 "dcl=Disclaimer\n" +
 "dclt=For security purposes, please check: <a href=\"http://www.phpbb.com/mods/\">http://www.phpbb.com/mods/</a> for the latest version of this MOD. Downloading this MOD from other sites could cause malicious code to enter into your phpBB Forum. As such, phpBB will not offer support for MODs not offered in our MODs database, located at: <a href=\"http://www.phpbb.com/mods/\">http://www.phpbb.com/mods/</a>\n" +
-"isp=English Support\n" +
+"isp= and English support\n" +
 "ispt=English support can be obtained at <a href=\"http://www.phpbb.com/mods/\">http://www.phpbb.com/mods/</a> for released MODs.\n" +
-"ant=Author Notes:\n" +
+"ant=Author notes:\n" +
 "lic=License\n" +
 "lict=This MOD has been licensed under the following license:\n" +
-"ont=Other Notes\n" +
+"ont= and other notes\n" +
 "ontt1=Before adding this MOD to your forum, you should back up all files related to this MOD.\n" +
 "ontt2=This MOD was designed for phpBB\n" +
 "ontt3=and may not function as stated on other phpBB versions. MODs for phpBB 3.0 will <strong>not</strong> work on phpBB 2.0 and vice versa.\n" +
 "onttq=This MOD is development quality. It is not recommended that you install it on a live forum.\n" +
 "sql=SQL\n" +
-"fca=File Copy\n" +
+"fca=File copy\n" +
 "c-copy=Copy:\n" +
 "c-to=To:\n" +
 "cde-c=Code:\n" +
-"cde-sa=Select All\n" +
+"cde-sa=Select all\n" +
 "edts=Edits\n" +
 "edtt=Use your keyboard to navigate the code boxes. You may also hit '<em>s</em>' on your keyboard to go to the first code box.\n" +
 "opn=Open:\n" +
 "cm-cmt=Comments\n" +
 "fnd=Find\n" +
 "fndt=<strong>Tip:</strong> This may be a partial find and not the whole line.\n" +
-"rplw=Replace With\n" +
+"rplw=Replace with\n" +
 "rplwt=<strong>Tip:</strong> Replace the preceding line(s) to find with the following lines.\n" +
 "aft=Add after\n" +
 "aftt=<strong>Tip:</strong> Add these lines on a new blank line after the preceding line(s) to find.\n" +
@@ -651,7 +651,7 @@ var enStrings = "h1=Installation Instructions for\n" +
 "inct=<strong>Tip:</strong> This allows you to alter integers. For help on what each operator means, click here.\n" +
 "ifnd=In-line Find\n" +
 "ifndt=<strong>Tip:</strong> This is a partial match of a line for in-line operations.\n" +
-"irplw=In-line Replace With\n" +
+"irplw=In-line Replace with\n" +
 "irplwt=\n" +
 "iaft=In-line Add after\n" +
 "iaftt=\n" +
@@ -659,17 +659,17 @@ var enStrings = "h1=Installation Instructions for\n" +
 "ibeft=\n" +
 "iinc=In-line Increment\n" +
 "iinct=<strong>Tip:</strong> This allows you to alter integers. For help on what each operator means, click here.\n" +
-"diy=DIY Instructions\n" +
+"diy=DIY instructions\n" +
 "diyt=These are manual instructions that cannot be performed automatically. You should follow these instructions carefully.\n" +
 "eom=Save all files. End of MOD.\n" +
 "eomt=You have finished the installation for this MOD. Upload all changed files to your website. If the installation went bad, simply restore your backed up files.\n" +
-"slg=Select Language:\n" +
+"slg=Select language:\n" +
 "dbms=Select Database Type:\n" +
 "foot=MOD UA XSLT File Copyright &#169; 2007 The phpBB Group, this MOD is copyright to the authors listed above.\n" +
 "regex=This find contains an advanced feature known as regular expressions, click here to learn more.\n" +
 "mhe-v=- Version\n" +
-"mh=MOD History\n" +
-"addtl-modx=Additional MODX Files\n" +
+"mh=MOD history\n" +
+"addtl-modx=Additional MODX files\n" +
 "imn=This MOD has no additional MODX files.\n"+
 "atm=About this MOD";
 
@@ -1424,10 +1424,10 @@ function toggle_edit(o)
 		<div id="debug"></div>
 		<div id="wrap">
 			<div id="page-header">
-				<h1><span id="lang-h1">Installation Instructions for</span> '<xsl:value-of select="$title" />' <span id="lang-V">Version</span>&nbsp;<xsl:value-of select="$version" /></h1>
+				<h1><span id="lang-h1">Installation instructions for</span> '<xsl:value-of select="$title" />' <span id="lang-V">version</span>&nbsp;<xsl:value-of select="$version" /></h1>
 				<form method="post" action="" id="lang-selector" style="display: none;">
 				<fieldset class="nobg">
-					<label for="language"><span id="lang-slg">Select Language:</span></label>&nbsp;<select id="language" name="language" onclick="load_languages()"><option value="en" selected="selected">English</option></select>
+					<label for="language"><span id="lang-slg">Select language:</span></label>&nbsp;<select id="language" name="language" onclick="load_languages()"><option value="en" selected="selected">English</option></select>
 				</fieldset>
 				</form>
 			</div>
@@ -1520,7 +1520,7 @@ function toggle_edit(o)
 						<xsl:call-template name="give-installation"></xsl:call-template>
 					</xsl:for-each>
 					<xsl:if test="mod:author-notes != 'N/A' and mod:author-notes != 'n/a' and mod:author-notes != ''">
-					<dt id="lang-ant">Author Notes:</dt>
+					<dt id="lang-ant">Author notes:</dt>
 					<dd>
 						<xsl:if test="count(mod:author-notes) > 1">
 							<dl id="author-notes" class="nopadding">
@@ -1561,19 +1561,19 @@ function toggle_edit(o)
 		</xsl:for-each>
 		</fieldset>
 		<xsl:if test="count(../mod:action-group/mod:open) > 0">
-		<h3 id="lang-fte">Files to Edit</h3>
+		<h3 id="lang-fte">Files to edit</h3>
 		<xsl:for-each select="../mod:action-group">
 			<xsl:call-template name="give-files-to-edit"></xsl:call-template>
 		</xsl:for-each>
 		</xsl:if>
-		<h3 id="lang-icf">Included Files</h3>
+		<h3 id="lang-icf">Included files</h3>
 		<xsl:if test="count(../mod:action-group/mod:copy/mod:file) = 0">
 			<p id="lang-icfn">No files have been included with this MOD.</p>
 		</xsl:if>
 		<xsl:for-each select="../mod:action-group">
 			<xsl:call-template name="give-files-included"></xsl:call-template>
 		</xsl:for-each>
-		<h3 id="lang-addtl-modx">Additional MODX Files</h3>
+		<h3 id="lang-addtl-modx">Additional MODX files</h3>
 		<xsl:if test="count(mod:link-group/mod:link) = 0">
 			<p id="lang-imn">This MOD has no additional MODX files.</p>
 		</xsl:if>
@@ -1584,7 +1584,7 @@ function toggle_edit(o)
 		</ul>
 		<hr />
 		<div id="modDisclaimer">
-			<h3><span id="lang-dcl">Disclaimer</span> &amp; <span id="lang-ont">Other Notes</span></h3>
+			<h3><span id="lang-dcl">Disclaimer</span><span id="lang-ont"> and other notes</span></h3>
 			<div class="mod-about">
 				<span class="corners-top"><span></span></span>
 					<div class="mod-about-padding">
@@ -1592,7 +1592,7 @@ function toggle_edit(o)
 					<p><span id="lang-ontt1">Before adding this MOD to your forum, you should back up all files related to this MOD.</span></p>
 					<p><span id="lang-ontt2">This MOD was designed for phpBB</span><xsl:text> </xsl:text><xsl:value-of select="mod:installation/mod:target-version" /><xsl:text> </xsl:text><span id="lang-ontt3"> and may not function as stated on other phpBB versions. MODs for phpBB 3.0 will <strong>not</strong> work on phpBB 2.0 and vice versa.</span></p>
 					<xsl:for-each select="./mod:mod-version">
-						<xsl:if test="substring-before(substring-after(current(), '.'), '.') mod 2 != 0 or substring-before(current(), '.') = 0">
+						<xsl:if test="substring-before(current(), '.') = 0">
 							<p><strong class="red"><span id="lang-onttq">This MOD is development quality. It is not recommended that you install it on a live forum.</span></strong></p>
 						</xsl:if>
 					</xsl:for-each>
@@ -1601,7 +1601,7 @@ function toggle_edit(o)
 			</div>
 		</div>
 		<div>
-			<h3><span id="lang-lic">License</span> &amp; <span id="lang-isp">English Support</span></h3>
+			<h3><span id="lang-lic">License</span><span id="lang-isp"> and English support</span></h3>
 			<div class="mod-about">
 				<span class="corners-top"><span></span></span>
 					<div class="mod-about-padding">
@@ -1654,7 +1654,7 @@ function toggle_edit(o)
 							(<span id="lang-a-c-f[{generate-id()}]]">From</span>:&nbsp;<xsl:value-of select="@from" />&nbsp;<span id="lang-a-c-t[{generate-id()}]]">to</span>:&nbsp;<xsl:value-of select="@to" />)
 							</xsl:if>
 
-						</xsl:if>				
+						</xsl:if>
 						<xsl:if test="@status = 'current' and @from != 'N/A' and @from != 'n/a' and @from!=''">
 							(<span id="lang-a-c-s[{generate-id()}]]">Since</span>:&nbsp;<xsl:value-of select="@from" />)
 						</xsl:if>
@@ -1664,7 +1664,7 @@ function toggle_edit(o)
 		</dl>
 	</xsl:template>
 	<xsl:template name="give-installation">
-		<dt id="lang-il">Installation Level:</dt>
+		<dt id="lang-il">Installation level:</dt>
 		<dd class="mod-about">
 			<div class="inner">
 				<xsl:if test="mod:level='easy'">
@@ -1678,7 +1678,7 @@ function toggle_edit(o)
 				</xsl:if>
 			</div>
 		</dd>
-		<dt id="lang-it">Installation Time:</dt>
+		<dt id="lang-it">Installation time:</dt>
 		<dd class="mod-about">
 			<div class="inner">
 				<p>~<xsl:value-of select="floor(mod:time div 60)" />&nbsp;<span id="lang-mint">minutes</span></p>
@@ -1688,7 +1688,7 @@ function toggle_edit(o)
 	<xsl:template name="give-mod-history">
 		<xsl:if test="count(mod:entry) > 0">
 			<fieldset>
-			<legend id="lang-mh">MOD History</legend>
+			<legend id="lang-mh">MOD history</legend>
 			<div class="mod-about" id="history_toggle_area" style="display:none;">
 				<span class="corners-top"><span></span></span>
 				<div class="mod-about-padding">
@@ -1831,7 +1831,7 @@ function toggle_edit(o)
 					<xsl:value-of select="@dbms" />:
 				</xsl:if>
 				<div class="codebox">
-					<div class="codeHead"><span id="lang-cde-c[{generate-id()}]">Code:</span><a href="#" onclick="select_code(this); return false;" class="codeSelect"><span id="lang-cde-sa[{generate-id()}]">Select All</span></a></div>
+					<div class="codeHead"><span id="lang-cde-c[{generate-id()}]">Code:</span><a href="#" onclick="select_code(this); return false;" class="codeSelect"><span id="lang-cde-sa[{generate-id()}]">Select all</span></a></div>
 					<div class="codePre"><pre id="{generate-id()}"><xsl:value-of select="current()" /></pre></div>
 				</div>
 			</div>
@@ -1839,7 +1839,7 @@ function toggle_edit(o)
 	</xsl:template>
 	<xsl:template name="give-manual">
 		<xsl:if test="count(mod:diy-instructions) > 0">
-			<h2 id="lang-diy">DIY Instructions</h2>
+			<h2 id="lang-diy">DIY instructions</h2>
 			<div class="mod-about">
 				<span class="corners-top"><span></span></span>
 					<div class="mod-about-padding">
@@ -1907,7 +1907,7 @@ function toggle_edit(o)
 									<p><span id="lang-beft[{generate-id()}]"><strong>Tip:</strong> Add these lines on a new blank line before the preceding line(s) to find.</span></p>
 								</xsl:if>
 								<xsl:if test="@type = 'replace-with'">
-									<h4 id="lang-rplw[{generate-id()}]">Replace With</h4>
+									<h4 id="lang-rplw[{generate-id()}]">Replace with</h4>
 									<p><span id="lang-rplwt[{generate-id()}]"><strong>Tip:</strong> Replace the preceding line(s) to find with the following lines.</span></p>
 								</xsl:if>
 								<xsl:if test="@type = 'operation'">
@@ -1915,7 +1915,7 @@ function toggle_edit(o)
 									<p><span id="lang-inct[{generate-id()}]"><strong>Tip:</strong> This allows you to alter integers. For help on what each operator means, click here.</span></p>
 								</xsl:if>
 								<div class="codebox">
-									<div class="codeHead"><span id="lang-cde-c[{generate-id()}]">Code:</span><a href="#" onclick="select_code(this); return false;" class="codeSelect"><span id="lang-cde-sa[{generate-id()}]">Select All</span></a></div>
+									<div class="codeHead"><span id="lang-cde-c[{generate-id()}]">Code:</span><a href="#" onclick="select_code(this); return false;" class="codeSelect"><span id="lang-cde-sa[{generate-id()}]">Select all</span></a></div>
 									<div class="codePre"><pre id="{generate-id()}"><xsl:value-of select="current()" /></pre></div>
 								</div>
 							</xsl:if>
@@ -1930,7 +1930,7 @@ function toggle_edit(o)
 												</xsl:if>
 											</p>
 											<div class="codebox">
-												<div class="codeHead"><span id="lang-cde-c[{generate-id()}]">Code:</span><a href="#" onclick="select_code(this); return false;" class="codeSelect"><span id="lang-cde-sa[{generate-id()}]">Select All</span></a></div>
+												<div class="codeHead"><span id="lang-cde-c[{generate-id()}]">Code:</span><a href="#" onclick="select_code(this); return false;" class="codeSelect"><span id="lang-cde-sa[{generate-id()}]">Select all</span></a></div>
 												<div class="codePre"><pre id="{generate-id()}"><xsl:value-of select="current()" /></pre></div>
 											</div>
 										</xsl:if>
@@ -1944,7 +1944,7 @@ function toggle_edit(o)
 												<p><span id="lang-ibeft[{generate-id()}]"></span></p>
 											</xsl:if>
 											<xsl:if test="@type = 'replace-with'">
-												<h5 id="lang-irplw[{generate-id()}]">In-line Replace With</h5>
+												<h5 id="lang-irplw[{generate-id()}]">In-line Replace with</h5>
 												<p><span id="lang-irplwt[{generate-id()}]"></span></p>
 											</xsl:if>
 											<xsl:if test="@type = 'operation'">
@@ -1975,7 +1975,7 @@ function toggle_edit(o)
 		</div>
 	</xsl:template>
 	<xsl:template name="give-filez">
-		<h2 id="lang-fca">File Copy</h2>
+		<h2 id="lang-fca">File copy</h2>
 		<ol id="file-copy">
 			<xsl:for-each select="mod:file">
 				<li><dl>

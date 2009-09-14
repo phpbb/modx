@@ -182,14 +182,14 @@ a:active {
 }
 
 #content {
-	padding:0px 10px 10px 10px;
+	padding:0 10px 10px 10px;
 	position:relative;
 }
 
 #content h1 {
 	color:#115098;
 	line-height:1.2em;
-	margin-bottom:0px;
+	margin-bottom:0;
 }
 
 #main {
@@ -260,14 +260,14 @@ span.corners-bottom span {
 /* General form styles
 ––––––––––––––––––––––––––––––––––––––––*/
 fieldset {
-	margin:15px 0;
-	padding:1px;
+	margin:25px 0;
+	padding:1px 0;
 	border-top:1px solid #D7D7D7;
 	border-right:1px solid #CCCCCC;
 	border-bottom:1px solid #CCCCCC;
 	border-left:1px solid #D7D7D7;
 	background-color:#FFFFFF;
-	/*position:relative;*/
+	position:relative;
 }
 
 .rtl fieldset {
@@ -286,15 +286,16 @@ fieldset p {
 }
 
 legend {
-	padding:1px 3px;
+	padding:1px 5px;
 	font-family:Tahoma,arial,Verdana,Sans-serif;
 	font-size:1.06em;
 	font-weight:bold;
 	color:#115098;
-/*	position:relative;*/
+	margin-top:-.4em;
+	position:relative;
 /*	text-transform:capitalize;*/
 	line-height:1.00em;
-	top:0em;
+	top:0;
 	vertical-align:middle;
 }
 
@@ -359,11 +360,10 @@ fieldset.nobg {
 }
 
 .mod-about span.corners-top, .mod-about span.corners-bottom {
-	background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAMCAYAAABBV8wuAAAABGdBTUEAANbY1E9YMgAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAABVSURBVHjaYviPAD+BeDIQ2wMxGwNU8AkQGwAxAwwzQFXqIgvCJCajC8IkbLBJMIItYmD4xYAGmBhwAJCEMS6JcKxa8DkX5kFdbBKwIJkADRIGgAADAGtyotIvyqGpAAAAAElFTkSuQmCC);
+background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAMCAYAAABBV8wuAAAABGdBTUEAANbY1E9YMgAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAABVSURBVHjaYviPAD+BeDIQ2wMxGwNU8AkQGwAxAwwzQFXqIgvCJCajC8IkbLBJMIItYmD4xYAGmBhwAJCEMS6JcKxa8DkX5kFdbBKwIJkADRIGgAADAGtyotIvyqGpAAAAAElFTkSuQmCC);
 }
 
-.mod-about span.corners-top span, .mod-about span.corners-bottom span {
-	background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAMCAYAAABBV8wuAAAABGdBTUEAANbY1E9YMgAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAABbSURBVHjaYvr//z8bENsD8WQg/vkfChjQsAEQPwFJMDGgggtA7AnEv9AlQOAyEM/CJgECK3FJnMIlwYZLQheXRDg2CV0gzmTCIrgd2Q4bIJ4AxGeAWBokABBgAE4XMoXm9S+UAAAAAElFTkSuQmCC);
+.mod-about span.corners-top span, .mod-about span.corners-bottom span {	background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAMCAYAAABBV8wuAAAABGdBTUEAANbY1E9YMgAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAABbSURBVHjaYvr//z8bENsD8WQg/vkfChjQsAEQPwFJMDGgggtA7AnEv9AlQOAyEM/CJgECK3FJnMIlwYZLQheXRDg2CV0gzmTCIrgd2Q4bIJ4AxGeAWBokABBgAE4XMoXm9S+UAAAAAElFTkSuQmCC);
 }
 
 .mod-about span.corners-top {
@@ -385,13 +385,13 @@ fieldset.nobg {
 	background-position:100% 100%;
 }
 
-.mod-about-padding { 0px 8px; }
-.mod-about { margin:10px 4px; }
+.mod-about-padding { padding: 0 8px; }
+.mod-about { margin:7px 4px 10px 4px; }
 .mod-about dt { font-weight:bold; padding-right:4px; }
-.mod-about dl { margin:0px 8px; }
+.mod-about dl { margin:0 8px; }
 .mod-about div { margin:3px 8px; }
-/*div.inner .mod-about dl { margin:0px 0px; }*/
-/*.nopadding { margin:0px 0px; }*/
+/*div.inner .mod-about dl { margin:0; }*/
+/*.nopadding { margin:0; }*/
 
 .mod-history {font-size:82.5%; } /* Mod histories can get pretty long, so I'm making that font a bit smaller */
 #language { width:130px; }
@@ -1321,11 +1321,17 @@ function sql_display($value)
 */
 function sql_dropdown()
 {
+	var $ie = /*@cc_on!@*/false;
 	var $dbms_element = document.getElementById('dbms');
 	var $dbms_selector = document.getElementById('dbms-selector');
 	if (!$dbms_element || !$dbms_selector)
 	{
 		return;
+	}
+
+	if($ie)
+	{
+		$dbms_selector.style.display = 'none';
 	}
 
 	$type = [

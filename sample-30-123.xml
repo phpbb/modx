@@ -17,26 +17,25 @@
 		<author-group>
 			<author>
 				<realname>David Smith</realname>
-				<username>smithy_dll</username>
+				<username>#ToRN</username>
 				<homepage>http://www.phpbb.com/mods/modx/</homepage>
       		<contributions-group>
       		  <contributions status="past" from="2006-01-01" position="Developer"/>
-      		</contributions-group>			 				
+      		</contributions-group>
 			</author>
 			<author>
 				<realname>Eric Faerber</realname>
-				<username>wGEric</username>
+				<username phpbbcom="no">wGEric</username>
       		<contributions-group>
       		  <contributions status="past" from="2006-01-01" to="2008-01-11" position="Developer"/>
       		  <contributions status="current" from="2008-01-11" position="Tester"/>
-      		  
-      		</contributions-group>			    				
+      		</contributions-group>
 			</author>
 			<author>
 			    <username>paul</username>
       		<contributions-group>
       		  <contributions status="current" position="Developer"></contributions>
-      		</contributions-group>			    
+      		</contributions-group>
 			</author>			
 		</author-group>
 		
@@ -95,11 +94,15 @@
 
 		<link-group>
 			<link type="template" href="subsilver2-122.xml" lang="en">subsilver2</link>
-			<link type="template-lang" href="nl-subsilver2-122.xml" lang="nl">Nederlandse subsilver2</link>
+			<link type="template-lang" realname="nl" href="nl-subsilver2-122.xml" lang="nl">Nederlandse subsilver2</link>
 		</link-group>
 	</header>
 	
 	<action-group>
+		<sql dbms="mssql"><![CDATA[ALTER TABLE phpbb_posts ADD thisposthelpedme TINYINT DEFAULT 0;
+	CREATE INDEX thisposthelpedme_ix ON phpbb_posts (thisposthelpedme);]]></sql>
+		<sql dbms="mysql"><![CDATA[ALTER TABLE phpbb_posts ADD thisposthelpedme TINYINT(1) DEFAULT 0;
+	ALTER TABLE phpbb_posts ADD INDEX (thisposthelpedme);]]></sql>
 		<sql><![CDATA[CREATE TABLE phpbb_sessions_keys (
 	key_id varchar(32) DEFAULT '0' NOT NULL,
 	user_id mediumint(8) DEFAULT '0' NOT NULL,

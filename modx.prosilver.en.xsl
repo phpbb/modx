@@ -1425,18 +1425,6 @@ function toggle_edit(o)
 	}
 	return toggle_display(o, s);
 }
-
-/**
-* Generate a url to user profile
-*/
-function profileurl(username, event)
-{
-	var phpbb_url = 'http://www.phpbb.com/community/memberlist.php?mode=viewprofile&amp;un=';
-	var user_url = '';
-	user_url = username.replace('#', '%23');
-	user_url = user_url.replace(' ', '%20');
-	window.location=phpbb_url + user_url;
-}
 				</script>
 		</head>
 		<body class="ltr" onload="startup()">
@@ -1650,7 +1638,21 @@ function profileurl(username, event)
 									<dd><xsl:value-of select="$authorname" /></dd>
 								</xsl:when>
 								<xsl:otherwise>
-									<dd><a href="http://www.phpbb.com/community/memberlist.php?mode=viewprofile&amp;un={translate(mod:username, ' ', '+')}" onclick="profileurl('{mod:username}'); return false;"><xsl:value-of select="$authorname" /></a></dd>
+									<xsl:variable name="authortemp">
+										<xsl:call-template name="replaceCharsInString">
+											<xsl:with-param name="stringIn" select="string($authorname)"/>
+											<xsl:with-param name="charsIn" select="'#'"/>
+											<xsl:with-param name="charsOut" select="'%23'"/>
+										</xsl:call-template>
+									</xsl:variable>
+									<xsl:variable name="authorurl">
+										<xsl:call-template name="replaceCharsInString">
+											<xsl:with-param name="stringIn" select="string($authortemp)"/>
+											<xsl:with-param name="charsIn" select="' '"/>
+											<xsl:with-param name="charsOut" select="'%20'"/>
+										</xsl:call-template>
+									</xsl:variable>
+									<dd><a href="http://www.phpbb.com/community/memberlist.php?mode=viewprofile&amp;un={$authorurl}"><xsl:value-of select="$authorname" /></a></dd>
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:for-each>
@@ -2028,4 +2030,23 @@ function profileurl(username, event)
 		</xsl:choose>
 	</xsl:template>
 
+	<!-- replace function borrowed from http://www.dpawson.co.uk/xsl/sect2/replace.html#d9701e43 -->
+	<xsl:template name="replaceCharsInString">
+		<xsl:param name="stringIn"/>
+		<xsl:param name="charsIn"/>
+		<xsl:param name="charsOut"/>
+		<xsl:choose>
+			<xsl:when test="contains($stringIn,$charsIn)">
+				<xsl:value-of select="concat(substring-before($stringIn,$charsIn),$charsOut)"/>
+				<xsl:call-template name="replaceCharsInString">
+					<xsl:with-param name="stringIn" select="substring-after($stringIn,$charsIn)"/>
+					<xsl:with-param name="charsIn" select="$charsIn"/>
+					<xsl:with-param name="charsOut" select="$charsOut"/>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="$stringIn"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
 </xsl:stylesheet>

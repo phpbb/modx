@@ -92,11 +92,22 @@
 				    <change>De voorbeeld MODX MODX geupdated voor de nieuwe MODX 1.2.2 release</change>
 				</changelog>
 			</entry>			
+			<entry>
+				<date>2009-09-20</date>
+				<rev-version>1.2.3</rev-version>
+				<changelog lang="en">
+				    <change>Updated the sample MODX file for the new MODX 1.2.3 release</change>
+				</changelog>
+				<changelog lang="nl">
+				    <change>De voorbeeld MODX MODX geupdated voor de nieuwe MODX 1.2.3 release</change>
+				</changelog>
+			</entry>			
 		</history>
 
 		<link-group>
-			<link type="template" href="subsilver2-122.xml" lang="en">subsilver2</link>
-			<link type="template-lang" href="nl-subsilver2-122.xml" lang="nl">Nederlandse subsilver2</link>
+			<link type="template" realname="subsilver" href="style-subsilver.xml" lang="en">subsilver2</link>
+			<link type="template" href="subsilver2-123.xml" lang="en">subsilver2</link>
+			<link type="template-lang" href="nl-subsilver2-123.xml" lang="nl">Nederlandse subsilver2</link>
 		</link-group>
 	</header>
 	

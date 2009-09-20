@@ -688,7 +688,14 @@ var enStrings = "dir=ltr\n" +
 "mhe-v=- Version\n" +
 "mh=MOD history\n" +
 "addtl-modx=Additional MODX files\n" +
-"imn=This MOD has no additional MODX files.\n"+
+"imn=This MOD has no additional MODX files.\n" +
+"link-c=Contrib\n" +
+"link-d=Dependency\n" +
+"link-l=Language\n" +
+"link-p=Parent\n" +
+"link-tr=Translation\n" +
+"link-te=Template\n" +
+"link-tl=Template lang\n" +
 "atm=About this MOD";
 
 var box = codes_ll;
@@ -1649,14 +1656,38 @@ function toggle_edit(o)
 		<xsl:for-each select="../mod:action-group">
 			<xsl:call-template name="give-files-included"></xsl:call-template>
 		</xsl:for-each>
-		<h3 id="lang-addtl-modx">Additional MODX files</h3>
+		<h3 id="lang-addtl-modx">Additionalff MODX files</h3>
 		<xsl:if test="count(mod:link-group/mod:link) = 0">
 			<p id="lang-imn">This MOD has no additional MODX files.</p>
 		</xsl:if>
 
 		<ul class="link-group" id="link-group">
 			<xsl:for-each select="mod:link-group/mod:link">
-				<li lang="{@lang}"><span class="link-group-lang"><xsl:value-of select="@lang" />&nbsp;</span><strong style="text-transform: capitalize;"><xsl:value-of select="@type" />:</strong>&nbsp;<a href="{@href}"><xsl:value-of select="current()" /></a></li>
+				<li lang="{@lang}">
+					<span class="link-group-lang"><xsl:value-of select="@lang" />&nbsp;</span><strong>
+						<xsl:if test="@type = 'dependency'">
+							<span id="lang-link-d">Dependency</span>:
+						</xsl:if>
+						<xsl:if test="@type = 'translation'">
+							<span id="lang-link-tr">Translation</span>:
+						</xsl:if>
+						<xsl:if test="@type = 'contrib'">
+							<span id="lang-link-c">Contrib</span>:
+						</xsl:if>
+						<xsl:if test="@type = 'language'">
+							<span id="lang-link-l">Language</span>:
+						</xsl:if>
+						<xsl:if test="@type = 'template-lang'">
+							<span id="lang-link-tl">Template lang</span>:
+						</xsl:if>
+						<xsl:if test="@type = 'parent'">
+							<span id="lang-link-p">Parent</span>:
+						</xsl:if>
+						<xsl:if test="@type = 'template'">
+							<span id="lang-link-te">Template</span>:
+						</xsl:if>
+					</strong>&nbsp;<a href="{@href}"><xsl:value-of select="current()" /></a>
+				</li>
 			</xsl:for-each>
 		</ul>
 		<hr />

@@ -693,7 +693,6 @@ var enStrings = "dir=ltr\n" +
 "link-d=Dependency\n" +
 "link-l=Language\n" +
 "link-p=Parent\n" +
-"link-tr=Translation\n" +
 "link-te=Template\n" +
 "link-tl=Template lang\n" +
 "atm=About this MOD";
@@ -1667,9 +1666,6 @@ function toggle_edit(o)
 					<span class="link-group-lang"><xsl:value-of select="@lang" />&nbsp;</span><strong>
 						<xsl:if test="@type = 'dependency'">
 							<span id="lang-link-d">Dependency</span>:
-						</xsl:if>
-						<xsl:if test="@type = 'translation'">
-							<span id="lang-link-tr">Translation</span>:
 						</xsl:if>
 						<xsl:if test="@type = 'contrib'">
 							<span id="lang-link-c">Contrib</span>:

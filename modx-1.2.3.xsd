@@ -325,7 +325,6 @@
 	<xs:simpleType name="linkTypes">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="dependency" />
-			<xs:enumeration value="translation" />
 			<xs:enumeration value="template" />
 			<xs:enumeration value="contrib" />
 			<xs:enumeration value="language" />

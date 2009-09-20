@@ -41,12 +41,12 @@
 			</author>			
 		</author-group>
 		
-		<mod-version>1.2.2</mod-version>
+		<mod-version>1.2.3</mod-version>
 		
 		<installation>
 			<level>easy</level>
 			<time>60</time>
-			<target-version>3.0.4</target-version>
+			<target-version>3.0.5</target-version>
 		</installation>
 
 		<history>

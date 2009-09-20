@@ -5,7 +5,7 @@
 <!DOCTYPE xsl:stylesheet[
 	<!ENTITY nbsp "&#160;">
 ]>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:mod="http://vilden.se/mods/xml/modx-1.2.3.xsd">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:mod="http://www.phpbb.com/mods/xml/modx-1.2.3.xsd">
 	<xsl:output method="html" omit-xml-declaration="no" indent="yes" />
 	<xsl:variable name="title" select="mod:mod/mod:header/mod:title" />
 	<xsl:variable name="version">
@@ -35,6 +35,11 @@
 	padding:0;
 	font-size:100%;
 }
+
+/*.rtl * {
+	text-align:right;
+	direction: rtl;
+}*/
 
 body, div, p, th, td, li, dd {
 	font-size:x-small;
@@ -389,8 +394,9 @@ background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAMCAYAA
 .mod-about-padding { padding: 0 8px; }
 .mod-about { margin:7px 4px 10px 4px; }
 .mod-about dt { font-weight:bold; padding-right:4px; }
+.rtl .mod-about dt { padding-left: 4px; }
 .mod-about dl { margin:0 8px; }
-.mod-about div { margin:3px 8px; }
+.mod-about div { margin:3px 8px;}
 /*div.inner .mod-about dl { margin:0; }*/
 /*.nopadding { margin:0; }*/
 
@@ -403,8 +409,9 @@ span.key { font-size:12px; line-height:14px; padding-bottom:2px; width:20px; bor
 .mod-inlineedit { background-color:#DDEEFF; border:solid 1px #6699CC; margin:10px 0; padding:0 10px; }
 
 dl.author-info dd { margin-left:112px; margin-bottom:8px; }
-ol#file-copy { padding:5px; margin-left:20px; margin-bottom:10px; }
-ol#file-copy li { margin-left:30px; vertical-align:top;}
+.rtl dl.author-info dd { margin-left:112px; margin-bottom:8px; }
+ol#file-copy { padding:5px; margin-left:20px; margin-right:20px; margin-bottom:10px; }
+ol#file-copy li { margin-left:30px; margin-right:30px; vertical-align:top;}
 ol#file-copy span { font-weight:bold; }
 ol#file-copy dt {margin-right:5px; float:none !important }
 ol#file-copy dl {width:100%}
@@ -450,20 +457,29 @@ div.codebox pre {
 	margin:2px 0;
 }
 
+/*.rtl div.codePre pre {
+	text-align: left !important;
+	direction: ltr !important;
+}*/
+
 dt {
-	float:left;
+	float: left;
 	width:auto;
 }
 
 .rtl dt {
-	float:right;
+	float: right !important;
+	text-align: right;
+	width:auto;
 }
 
-dd {color:#666666;}
-dd + dd {padding-top:5px;}
-dt span {padding:0 5px 0 0;}
-.rtl dt span {padding:0 0 0 5px;}
-div.endMOD {padding:0 5px;}
+dd { color:#666666; }
+dd + dd { padding-top: 5px; }
+
+dt span { padding: 0 5px 0 0; }
+.rtl dt span { padding: 0 0 0 5px; }
+
+div.endMOD { padding:0 5px; }
 
 #history_toggle_link {
 	display:block;
@@ -592,7 +608,8 @@ document.onkeydown = mod_do_keypress;
 
 var host = "http://www.phpbb.com/mods/modx/i18n/";
 
-var enStrings = "h1=Installation instructions for\n" +
+var enStrings = "dir=ltr\n" +
+"h1=Installation instructions for\n" +
 "edt-show=Show&nbsp;&gt;&gt;\n" +
 "edt-hide=&lt;&lt;&nbsp;Hide\n" +
 "V=version\n" +
@@ -1029,6 +1046,10 @@ function applyLanguage(texts)
 	for (i in texts)
 	{
 		var lang = texts[i].split("=");
+		if(lang[0] == 'dir')
+		{
+			set_dir(lang[1]);
+		}
 		if (lang.length < 2)
 		{
 			continue;
@@ -1073,6 +1094,54 @@ function applyLanguage(texts)
 	{
 		document.getElementById('history_toggle_link').innerHTML = toggle_strings[(document.getElementById('mod_history_content').style.display == '' ? 'hide' : 'show')];
 	} catch(o) {}
+}
+
+function set_dir(direction)
+{
+	direction = (direction == 'rtl') ? 'rtl' : 'ltr';
+	document.body.style.direction=direction;
+
+	var dts = document.getElementsByTagName('dt');
+	var uls = document.getElementsByTagName('ul');
+	var ols = document.getElementsByTagName('ol');
+	var h2s = document.getElementsByTagName('h2');
+	var mod_td = document.getElementsByName('left4px');
+	var author_dd = document.getElementsByName('author-dd');
+	var ltr_spec = document.getElementsByName('ltr-spec');
+	var rtl_spec = document.getElementsByName('rtl-spec');
+
+	if(direction == 'rtl')
+	{
+		set_dir_loop(ltr_spec, 'display', 'none');
+		set_dir_loop(rtl_spec, 'display', 'inherit');
+		set_dir_loop(uls, 'margin', '0 2em 1em 0');
+		set_dir_loop(author_dd, 'margin-right', '115px');
+		set_dir_loop(mod_td, 'padding-left', '4px');
+		set_dir_loop(mod_td, 'padding-right', '0');
+		set_dir_loop(dts, 'float', 'right');
+		set_dir_loop(h2s, 'text-align', 'right');
+//		set_dir_loop(, '', '');
+	}
+	else
+	{
+		set_dir_loop(ltr_spec, 'display', 'inherit');
+		set_dir_loop(rtl_spec, 'display', 'none');
+		set_dir_loop(uls, 'margin', '0 0 1em 2em');
+		set_dir_loop(author_dd, 'margin-left', '112px');
+		set_dir_loop(mod_td, 'padding-left', '0');
+		set_dir_loop(mod_td, 'padding-right', '4px');
+		set_dir_loop(dts, 'float', 'left');
+		set_dir_loop(h2s, 'text-align', 'left');
+//		set_dir_loop(, '', '');
+	}
+}
+
+function set_dir_loop(object_name, object_property, object_value)
+{
+	for(j = 0; j < object_name.length; j++)
+	{
+		object_name[j].style.setProperty(object_property, object_value, '');
+	}
 }
 
 function select_code(a)
@@ -1427,7 +1496,7 @@ function toggle_edit(o)
 }
 				</script>
 		</head>
-		<body class="ltr" onload="startup()">
+		<body onload="startup()">
 		<div id="debug"></div>
 		<div id="wrap">
 			<div id="page-header">
@@ -1475,7 +1544,7 @@ function toggle_edit(o)
 			<div class="mod-about">
 				<span class="corners-top"><span></span></span>
 				<dl>
-					<dt id="lang-t">Title:</dt>
+					<dt id="lang-t" name="left4px">Title:</dt>
 					<dd>
 						<xsl:if test="count(mod:title) > 1">
 							<dl id="title" class="nopadding">
@@ -1491,7 +1560,7 @@ function toggle_edit(o)
 							<p lang="{@lang}" style='white-space:pre;'><xsl:value-of select="mod:title" /></p>
 						</xsl:if>
 					</dd>
-					<dt id="lang-d">Description:</dt>
+					<dt id="lang-d" name="left4px">Description:</dt>
 					<dd>
 						<xsl:if test="count(mod:description) > 1">
 							<dl id="description" class="nopadding">
@@ -1515,7 +1584,7 @@ function toggle_edit(o)
 							</p>
 						</xsl:if>
 					</dd>
-					<dt id="lang-aV">Version:</dt>
+					<dt id="lang-aV" name="left4px">Version:</dt>
 					<dd class="mod-about">
 						<p>
 							<xsl:for-each select="mod:mod-version">
@@ -1527,7 +1596,7 @@ function toggle_edit(o)
 						<xsl:call-template name="give-installation"></xsl:call-template>
 					</xsl:for-each>
 					<xsl:if test="mod:author-notes != 'N/A' and mod:author-notes != 'n/a' and mod:author-notes != ''">
-					<dt id="lang-ant">Author notes:</dt>
+					<dt id="lang-ant" name="left4px">Author notes:</dt>
 					<dd>
 						<xsl:if test="count(mod:author-notes) > 1">
 							<dl id="author-notes" class="nopadding">
@@ -1568,10 +1637,10 @@ function toggle_edit(o)
 		</xsl:for-each>
 		</fieldset>
 		<xsl:if test="count(../mod:action-group/mod:open) > 0">
-		<h3 id="lang-fte">Files to edit</h3>
-		<xsl:for-each select="../mod:action-group">
-			<xsl:call-template name="give-files-to-edit"></xsl:call-template>
-		</xsl:for-each>
+			<h3 id="lang-fte">Files to edit</h3>
+			<xsl:for-each select="../mod:action-group">
+				<xsl:call-template name="give-files-to-edit"></xsl:call-template>
+			</xsl:for-each>
 		</xsl:if>
 		<h3 id="lang-icf">Included files</h3>
 		<xsl:if test="count(../mod:action-group/mod:copy/mod:file) = 0">
@@ -1584,6 +1653,7 @@ function toggle_edit(o)
 		<xsl:if test="count(mod:link-group/mod:link) = 0">
 			<p id="lang-imn">This MOD has no additional MODX files.</p>
 		</xsl:if>
+
 		<ul class="link-group" id="link-group">
 			<xsl:for-each select="mod:link-group/mod:link">
 				<li lang="{@lang}"><span class="link-group-lang"><xsl:value-of select="@lang" />&nbsp;</span><strong style="text-transform: capitalize;"><xsl:value-of select="@type" />:</strong>&nbsp;<a href="{@href}"><xsl:value-of select="current()" /></a></li>
@@ -1629,13 +1699,13 @@ function toggle_edit(o)
 			<div class="mod-about">
 				<span class="corners-top"><span></span></span>
 					<dl class="author-info">
-						<dt id="lang-a-un[{generate-id()}]">Username:</dt>
+						<dt id="lang-a-un[{generate-id()}]" name="left4px">Username:</dt>
 
 						<xsl:variable name="authorname" select="mod:username" />
 						<xsl:for-each select="mod:username">
 							<xsl:choose>
 								<xsl:when test="@phpbbcom = 'no' or @phpbbcom = 'No' or @phpbbcom = 'NO'">
-									<dd><xsl:value-of select="$authorname" /></dd>
+									<dd name="author-dd"><span dir="ltr"><xsl:value-of select="$authorname" /></span></dd>
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:variable name="authortemp">
@@ -1652,38 +1722,51 @@ function toggle_edit(o)
 											<xsl:with-param name="charsOut" select="'%20'"/>
 										</xsl:call-template>
 									</xsl:variable>
-									<dd><a href="http://www.phpbb.com/community/memberlist.php?mode=viewprofile&amp;un={$authorurl}"><xsl:value-of select="$authorname" /></a></dd>
+									<dd name="author-dd"><a dir="ltr" href="http://www.phpbb.com/community/memberlist.php?mode=viewprofile&amp;un={$authorurl}"><xsl:value-of select="$authorname" /></a></dd>
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:for-each>
 						<xsl:if test="mod:email != 'N/A' and mod:email != 'n/a' and mod:email != ''">
 							<dt id="lang-a-e[{generate-id()}]">Email:</dt>
-							<dd><a href="mailto:{mod:email}"><xsl:value-of select="mod:email" /></a></dd>
+							<dd name="author-dd"><a href="mailto:{mod:email}"><xsl:value-of select="mod:email" /></a></dd>
 						</xsl:if>
 						<xsl:if test="mod:realname != 'N/A' and mod:realname != 'n/a' and mod:realname != ''">
 							<dt id="lang-a-n[{generate-id()}]">Name:</dt>
-							<dd><xsl:value-of select="mod:realname" /></dd>
+							<dd name="author-dd"><xsl:value-of select="mod:realname" /></dd>
 						</xsl:if>
 						<xsl:if test="mod:homepage != 'N/A' and mod:homepage != 'n/a' and mod:homepage!=''">
 							<dt id="lang-a-h[{generate-id()}]">WWW:</dt>
-
-							<dd><a href="{mod:homepage}"><xsl:value-of select="mod:homepage" /></a></dd>
+							<dd name="author-dd"><a href="{mod:homepage}" dir="ltr"><xsl:value-of select="mod:homepage" /></a></dd>
 						</xsl:if>
-
 						<xsl:if test="count(mod:contributions-group) > 0">
 							<dt id="lang-a-c[{generate-id()}]">Contributions:</dt>
 							<xsl:for-each select="mod:contributions-group/mod:contributions">
-								<dd>
-									<strong style="text-transform: capitalize;"><xsl:value-of select="@position" /></strong>&nbsp;
-									<xsl:if test="@status = 'past' and @from != 'N/A' and @from != 'n/a' and @from!=''">
-										<xsl:if test="@to != 'N/A' and @to != 'n/a' and @to!=''">
-										(<span id="lang-a-c-f[{generate-id()}]]">From</span>:&nbsp;<xsl:value-of select="@from" />&nbsp;<span id="lang-a-c-t[{generate-id()}]]">to</span>:&nbsp;<xsl:value-of select="@to" />)
-										</xsl:if>
+								<dd name="author-dd">
 
-									</xsl:if>
-									<xsl:if test="@status = 'current' and @from != 'N/A' and @from != 'n/a' and @from!=''">
-										(<span id="lang-a-c-s[{generate-id()}]]">Since</span>:&nbsp;<xsl:value-of select="@from" />)
-									</xsl:if>
+									<span name="rtl-spec">
+										<xsl:if test="@status = 'past' and @from != 'N/A' and @from != 'n/a' and @from!=''">
+											<xsl:if test="@to != 'N/A' and @to != 'n/a' and @to!=''">
+											<span id="lang-a-c-f[{generate-id()}]]">From</span>:&nbsp;<xsl:value-of select="@from" />&nbsp;<span id="lang-a-c-t[{generate-id()}]]">to</span>:&nbsp;<xsl:value-of select="@to" />
+											</xsl:if>
+										</xsl:if>
+										<xsl:if test="@status = 'current' and @from != 'N/A' and @from != 'n/a' and @from!=''">
+											<span id="lang-a-c-s[{generate-id()}]]">Since</span>:&nbsp;<xsl:value-of select="@from" />
+										</xsl:if>
+										&nbsp;<strong style="text-transform: capitalize;"><xsl:value-of select="@position" /></strong>
+									</span>
+
+									<span name="ltr-spec">
+										<strong style="text-transform: capitalize;"><xsl:value-of select="@position" /></strong>&nbsp;
+										<xsl:if test="@status = 'past' and @from != 'N/A' and @from != 'n/a' and @from!=''">
+											<xsl:if test="@to != 'N/A' and @to != 'n/a' and @to!=''">
+											(<span id="lang-a-c-f[{generate-id()}]]">From</span>:&nbsp;<xsl:value-of select="@from" />&nbsp;<span id="lang-a-c-t[{generate-id()}]]">to</span>:&nbsp;<xsl:value-of select="@to" />)
+											</xsl:if>
+										</xsl:if>
+										<xsl:if test="@status = 'current' and @from != 'N/A' and @from != 'n/a' and @from!=''">
+											(<span id="lang-a-c-s[{generate-id()}]]">Since</span>:&nbsp;<xsl:value-of select="@from" />)
+										</xsl:if>
+									</span>
+
 								</dd>
 							</xsl:for-each>
 						</xsl:if>
@@ -1694,7 +1777,7 @@ function toggle_edit(o)
 	</xsl:template>
 
 	<xsl:template name="give-installation">
-		<dt id="lang-il">Installation level:</dt>
+		<dt id="lang-il" name="left4px">Installation level:</dt>
 		<dd class="mod-about">
 			<div class="inner">
 				<xsl:if test="mod:level='easy'">
@@ -1708,7 +1791,7 @@ function toggle_edit(o)
 				</xsl:if>
 			</div>
 		</dd>
-		<dt id="lang-it">Installation time:</dt>
+		<dt id="lang-it" name="left4px">Installation time:</dt>
 		<dd class="mod-about">
 			<div class="inner">
 				<p>~<xsl:value-of select="floor(mod:time div 60)" />&nbsp;<span id="lang-mint">minutes</span></p>
@@ -1784,6 +1867,7 @@ function toggle_edit(o)
 			</xsl:for-each>
 		</ul>
 	</xsl:template>
+
 	<xsl:template name="give-files-to-edit">
 		<ul>
 			<xsl:for-each select="mod:open">
@@ -1791,6 +1875,7 @@ function toggle_edit(o)
 			</xsl:for-each>
 		</ul>
 	</xsl:template>
+
 	<xsl:template name="give-files-included">
 		<ul>
 			<xsl:for-each select="mod:copy">
@@ -1798,9 +1883,11 @@ function toggle_edit(o)
 			</xsl:for-each>
 		</ul>
 	</xsl:template>
+
 	<xsl:template name="give-file">
 		<li><a href="#{@src}"><xsl:value-of select="@src" /></a><xsl:if test="position()!=last()">,</xsl:if></li>
 	</xsl:template>
+
 	<xsl:template name="give-file-copy">
 		<xsl:for-each select="mod:file">
 			<li><xsl:value-of select="@from" />
@@ -1809,6 +1896,7 @@ function toggle_edit(o)
 			</li>
 		</xsl:for-each>
 	</xsl:template>
+
 	<xsl:template name="give-actions">
 	  <xsl:if test="count(mod:sql) > 0 or count(mod:copy) > 0 or count(mod:open) > 0">
 	  <hr />
@@ -1852,7 +1940,7 @@ function toggle_edit(o)
 			</div>
 		</div>
 		</xsl:if>
-		<xsl:call-template name="give-manual"></xsl:call-template>
+		<xsl:call-template name="give-manual" />
 	</xsl:template>
 	<xsl:template name="give-sql">
 		<dbms type="{@dbms}">
@@ -1862,7 +1950,7 @@ function toggle_edit(o)
 				</xsl:if>
 				<div class="codebox">
 					<div class="codeHead"><span id="lang-cde-c[{generate-id()}]">Code:</span><a href="#" onclick="select_code(this); return false;" class="codeSelect"><span id="lang-cde-sa[{generate-id()}]">Select all</span></a></div>
-					<div class="codePre"><pre id="{generate-id()}"><xsl:value-of select="current()" /></pre></div>
+					<div class="codePre"><pre id="{generate-id()}" dir="ltr"><xsl:value-of select="current()" /></pre></div>
 				</div>
 			</div>
 		</dbms>
@@ -1924,7 +2012,7 @@ function toggle_edit(o)
 								</p>
 								<div class="codebox">
 									<div class="codeHead"><span id="lang-cde-c[{generate-id()}]">Code:</span><a href="#" onclick="select_code(this); return false;" class="codeSelect"><span id="lang-cde-sa[{generate-id()}]">Select All</span></a></div>
-									<div class="codePre"><pre id="{generate-id()}"><xsl:value-of select="current()" /></pre></div>
+									<div class="codePre"><pre id="{generate-id()}" dir="ltr"><xsl:value-of select="current()" /></pre></div>
 								</div>
 							</xsl:if>
 							<xsl:if test="name() = 'action'">
@@ -1946,7 +2034,7 @@ function toggle_edit(o)
 								</xsl:if>
 								<div class="codebox">
 									<div class="codeHead"><span id="lang-cde-c[{generate-id()}]">Code:</span><a href="#" onclick="select_code(this); return false;" class="codeSelect"><span id="lang-cde-sa[{generate-id()}]">Select all</span></a></div>
-									<div class="codePre"><pre id="{generate-id()}"><xsl:value-of select="current()" /></pre></div>
+									<div class="codePre"><pre id="{generate-id()}" dir="ltr"><xsl:value-of select="current()" /></pre></div>
 								</div>
 							</xsl:if>
 							<xsl:if test="name() = 'inline-edit'">
@@ -1961,7 +2049,7 @@ function toggle_edit(o)
 											</p>
 											<div class="codebox">
 												<div class="codeHead"><span id="lang-cde-c[{generate-id()}]">Code:</span><a href="#" onclick="select_code(this); return false;" class="codeSelect"><span id="lang-cde-sa[{generate-id()}]">Select all</span></a></div>
-												<div class="codePre"><pre id="{generate-id()}"><xsl:value-of select="current()" /></pre></div>
+												<div class="codePre"><pre id="{generate-id()}" dir="ltr"><xsl:value-of select="current()" /></pre></div>
 											</div>
 										</xsl:if>
 										<xsl:if test="name() = 'inline-action'">
@@ -1983,7 +2071,7 @@ function toggle_edit(o)
 											</xsl:if>
 											<div class="codebox">
 												<div class="codeHead"><span id="lang-cde-c[{generate-id()}]">Code:</span><a href="#" onclick="select_code(this); return false;" class="codeSelect"><span id="lang-cde-sa[{generate-id()}]">Select All</span></a></div>
-												<div class="codePre"><pre id="{generate-id()}"><xsl:value-of select="current()" /></pre></div>
+												<div class="codePre"><pre id="{generate-id()}" dir="ltr"><xsl:value-of select="current()" /></pre></div>
 											</div>
 										</xsl:if>
 										<xsl:if test="name() = 'inline-comment'">
@@ -2008,7 +2096,8 @@ function toggle_edit(o)
 		<h2 id="lang-fca">File copy</h2>
 		<ol id="file-copy">
 			<xsl:for-each select="mod:file">
-				<li><dl>
+				<li>
+					<dl>
 						<dt><span id="lang-c-copy[{generate-id()}]">Copy:</span>&nbsp;<xsl:value-of select="@from" /></dt>
 						<dd><span id="lang-c-to[{generate-id()}]">To:</span>&nbsp;<xsl:value-of select="@to" /></dd>
 					</dl>

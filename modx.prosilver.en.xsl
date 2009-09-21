@@ -1818,7 +1818,7 @@ function toggle_edit(o)
 							<xsl:for-each select="mod:contributions-group/mod:contributions">
 								<dd name="author-dd">
 
-									<span name="rtl-spec">
+									<span name="rtl-spec" style="display: none">
 										<xsl:if test="@status = 'past' and @from != 'N/A' and @from != 'n/a' and @from!=''">
 											<xsl:if test="@to != 'N/A' and @to != 'n/a' and @to!=''">
 											<span id="lang-a-c-f[{generate-id()}]]">From</span>:&nbsp;<xsl:value-of select="@from" />&nbsp;<span id="lang-a-c-t[{generate-id()}]]">to</span>:&nbsp;<xsl:value-of select="@to" />

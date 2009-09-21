@@ -119,7 +119,7 @@
 	
 	<action-group>
 		<sql dbms="mysql"><![CDATA[ALTER TABLE phpbb_users ADD sample MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0']]></sql>
-		<sql dbms="mssql"><![CDATA[ALTER TABLE phpbb_users ADD sample MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0']]></sql>
+		<sql dbms="mssql"><![CDATA[ALTER TABLE phpbb_users ADD sample_ms MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0']]></sql>
 		<sql><![CDATA[CREATE TABLE phpbb_sessions_keys (
 	key_id varchar(32) DEFAULT '0' NOT NULL,
 	user_id mediumint(8) DEFAULT '0' NOT NULL,

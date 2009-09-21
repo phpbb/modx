@@ -1410,6 +1410,7 @@ function change_dbms($form)
  */
 function sql_display($value)
 {
+	var $ie = /*@cc_on!@*/false;
 	$tags = document.getElementsByTagName('dbms');
 
 	// show the dbms of type we have selected, hide all others except for non dbms specific
@@ -1419,7 +1420,8 @@ function sql_display($value)
 		{
 			continue;
 		}
-		$tags[$i].style.display = ($dbms == $value) ? '' : 'none';
+		$tag = document.getElementsByName($dbms);
+		$tag[$dbms].style.display = ($dbms == $value) ? '' : 'none';
 	}
 }
 
@@ -1436,11 +1438,12 @@ function sql_dropdown()
 		return;
 	}
 
-	if($ie)
+/*	if($ie)
 	{
 		$dbms_selector.style.display = 'none';
+		return;
 	}
-
+*/
 	$type = [
 		'mysql',
 		'mysql_41',
@@ -1452,6 +1455,8 @@ function sql_dropdown()
 		'sqllite'
 	];
 	$options = [];
+	$ie_options = [];
+	$ie_count = 0;
 	$tags = document.getElementsByTagName('dbms');
 
 	// Show the dbms of type we have selected, hide all others except for non dbms specific
@@ -1464,6 +1469,7 @@ function sql_dropdown()
 		if (($position = in_array($type, $dbms, true)) !== false)
 		{
 			$options[$position] = '<option value=' + $dbms + '>' + $dbms + '</option>';
+			$ie_options[$ie_count++] = $dbms;
 		}
 	}
 
@@ -1479,7 +1485,18 @@ function sql_dropdown()
 				$selects += $options[$i];
 			}
 		}
-		$dbms_element.innerHTML = $selects;
+		$dbms_element.innerHTML=$selects;
+
+		if($ie)
+		{
+			for($i in $ie_options)
+			{
+				$ie_option = document.createElement('option');
+				$ie_option.text = $ie_options[$i];
+				$ie_option.value = $ie_options[$i];
+				$dbms_element.add($ie_option);
+			}
+		}
 	}
 	else
 	{
@@ -1963,7 +1980,7 @@ function toggle_edit(o)
 			<form method="post" action="" id="dbms-selector">
 				<fieldset class="nobg">
 					<label for="dbms"> <span id="lang-dbms">Select Database Type:</span> </label>
-					<select id="dbms" name="dbms" onchange="change_dbms(this)">
+					<select id="dbms" name="dbms" onchange="change_dbms(this);">
 						<option value="mysql_41" selected="selected">MySQL 41</option>
 						<option value="mysql_40">MySQL 40</option>
 						<option value="firebird">Firebird</option>
@@ -2002,7 +2019,7 @@ function toggle_edit(o)
 	</xsl:template>
 	<xsl:template name="give-sql">
 		<dbms type="{@dbms}">
-			<div class="content">
+			<div class="content" name="{@dbms}" id="{@dbms}">
 				<xsl:if test="@dbms != ''">
 					<xsl:value-of select="@dbms" />:
 				</xsl:if>

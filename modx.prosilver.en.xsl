@@ -1109,44 +1109,75 @@ function set_dir(direction)
 
 	var dts = document.getElementsByTagName('dt');
 	var uls = document.getElementsByTagName('ul');
-	var ols = document.getElementsByTagName('ol');
 	var h2s = document.getElementsByTagName('h2');
-	var mod_td = document.getElementsByName('left4px');
+	var mod_dt = document.getElementsByName('left4px');
 	var author_dd = document.getElementsByName('author-dd');
 	var ltr_spec = document.getElementsByName('ltr-spec');
 	var rtl_spec = document.getElementsByName('rtl-spec');
 
 	if(direction == 'rtl')
 	{
-		set_dir_loop(ltr_spec, 'display', 'none');
-		set_dir_loop(rtl_spec, 'display', 'inherit');
-		set_dir_loop(uls, 'margin', '0 2em 1em 0');
-		set_dir_loop(author_dd, 'margin-right', '115px');
-		set_dir_loop(mod_td, 'padding-left', '4px');
-		set_dir_loop(mod_td, 'padding-right', '0');
-		set_dir_loop(dts, 'float', 'right');
-		set_dir_loop(h2s, 'text-align', 'right');
-//		set_dir_loop(, '', '');
+		for(j = 0; j < dts.length; j++)
+		{
+			dts[j].style.cssFloat='right';
+		}
+		for(j = 0; j < h2s.length; j++)
+		{
+			h2s[j].style.textAlign='right';
+		}
+		for(j = 0; j < uls.length; j++)
+		{
+			uls[j].style.margin='0 2em 1em 0';
+		}
+		for(j = 0; j < ltr_spec.length; j++)
+		{
+			ltr_spec[j].style.display='none';
+		}
+		for(j = 0; j < rtl_spec.length; j++)
+		{
+			rtl_spec[j].style.display='inherit';
+		}
+		for(j = 0; j < author_dd.length; j++)
+		{
+			author_dd[j].style.marginRight='115px';
+		}
+		for(j = 0; j < mod_dt.length; j++)
+		{
+			mod_dt[j].style.paddingRight='0';
+			mod_dt[j].style.paddingLeft='4px';
+		}
 	}
 	else
 	{
-		set_dir_loop(ltr_spec, 'display', 'inherit');
-		set_dir_loop(rtl_spec, 'display', 'none');
-		set_dir_loop(uls, 'margin', '0 0 1em 2em');
-		set_dir_loop(author_dd, 'margin-left', '112px');
-		set_dir_loop(mod_td, 'padding-left', '0');
-		set_dir_loop(mod_td, 'padding-right', '4px');
-		set_dir_loop(dts, 'float', 'left');
-		set_dir_loop(h2s, 'text-align', 'left');
-//		set_dir_loop(, '', '');
-	}
-}
-
-function set_dir_loop(object_name, object_property, object_value)
-{
-	for(j = 0; j < object_name.length; j++)
-	{
-		object_name[j].style.setProperty(object_property, object_value, '');
+		for(j = 0; j < dts.length; j++)
+		{
+			dts[j].style.cssFloat='left';
+		}
+		for(j = 0; j < h2s.length; j++)
+		{
+			h2s[j].style.textAlign='left';
+		}
+		for(j = 0; j < uls.length; j++)
+		{
+			uls[j].style.margin='0 0 1em 2em';
+		}
+		for(j = 0; j < ltr_spec.length; j++)
+		{
+			ltr_spec[j].style.display='inherit';
+		}
+		for(j = 0; j < rtl_spec.length; j++)
+		{
+			rtl_spec[j].style.display='none';
+		}
+		for(j = 0; j < author_dd.length; j++)
+		{
+			author_dd[j].style.marginleft='112px';
+		}
+		for(j = 0; j < mod_dt.length; j++)
+		{
+			mod_dt[j].style.paddingRight='4px';
+			mod_dt[j].style.paddingLeft='0';
+		}
 	}
 }
 

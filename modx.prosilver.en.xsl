@@ -608,7 +608,7 @@ document.onkeydown = mod_do_keypress;
 
 var host = "http://www.phpbb.com/mods/modx/i18n/";
 
-var enStrings = "dir=ltr\n" +
+var enStrings = "dir=rtl\n" +
 "h1=Installation instructions for\n" +
 "edt-show=Show&nbsp;&gt;&gt;\n" +
 "edt-hide=&lt;&lt;&nbsp;Hide\n" +
@@ -1119,7 +1119,7 @@ function set_dir(direction)
 	{
 		for(j = 0; j < dts.length; j++)
 		{
-			dts[j].style.cssFloat='right';
+			dts[j].style.styleFloat='right';
 		}
 		for(j = 0; j < h2s.length; j++)
 		{
@@ -1151,7 +1151,7 @@ function set_dir(direction)
 	{
 		for(j = 0; j < dts.length; j++)
 		{
-			dts[j].style.cssFloat='left';
+			dts[j].style.styleFloat='left';
 		}
 		for(j = 0; j < h2s.length; j++)
 		{

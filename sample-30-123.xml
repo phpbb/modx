@@ -36,7 +36,13 @@
 			<author>
 			    <username phpbbcom="no">paul</username>
       		<contributions-group>
-      		  <contributions status="current" position="Developer"></contributions>
+      		  <contributions status="past" from="2008-01-11" to="2009-05-01" position="Developer"></contributions>
+      		</contributions-group>
+			</author>			
+			<author>
+			    <username>tumba25</username>
+      		<contributions-group>
+      		  <contributions status="current" from="2009-09-12" position="Developer"></contributions>
       		</contributions-group>			    
 			</author>			
 		</author-group>
@@ -112,6 +118,8 @@
 	</header>
 	
 	<action-group>
+		<sql dbms="mysql"><![CDATA[ALTER TABLE phpbb_users ADD sample MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0']]></sql>
+		<sql dbms="mssql"><![CDATA[ALTER TABLE phpbb_users ADD sample MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0']]></sql>
 		<sql><![CDATA[CREATE TABLE phpbb_sessions_keys (
 	key_id varchar(32) DEFAULT '0' NOT NULL,
 	user_id mediumint(8) DEFAULT '0' NOT NULL,

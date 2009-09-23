@@ -608,7 +608,7 @@ document.onkeydown = mod_do_keypress;
 
 var host = "http://www.phpbb.com/mods/modx/i18n/";
 
-var enStrings = "dir=rtl\n" +
+var enStrings = "dir=ltr\n" +
 "h1=Installation instructions for\n" +
 "edt-show=Show&nbsp;&gt;&gt;\n" +
 "edt-hide=&lt;&lt;&nbsp;Hide\n" +
@@ -637,12 +637,12 @@ var enStrings = "dir=rtl\n" +
 "icfn=No files have been included with this MOD.\n" +
 "dcl=Disclaimer\n" +
 "dclt=For security purposes, please check: <a href=\"http://www.phpbb.com/mods/\">http://www.phpbb.com/mods/</a> for the latest version of this MOD. Downloading this MOD from other sites could cause malicious code to enter into your phpBB Forum. As such, phpBB will not offer support for MODs not offered in our MODs database, located at: <a href=\"http://www.phpbb.com/mods/\">http://www.phpbb.com/mods/</a>\n" +
-"isp= and English support\n" +
+"isp=and English support\n" +
 "ispt=English support can be obtained at <a href=\"http://www.phpbb.com/mods/\">http://www.phpbb.com/mods/</a> for released MODs.\n" +
 "ant=Author notes:\n" +
 "lic=License\n" +
 "lict=This MOD has been licensed under the following license:\n" +
-"ont= and other notes\n" +
+"ont=and other notes\n" +
 "ontt1=Before adding this MOD to your forum, you should back up all files related to this MOD.\n" +
 "ontt2=This MOD was designed for phpBB\n" +
 "ontt3=and may not function as stated on other phpBB versions. MODs for phpBB 3.0 will <strong>not</strong> work on phpBB 2.0 and vice versa.\n" +
@@ -1107,6 +1107,7 @@ function set_dir(direction)
 	direction = (direction == 'rtl') ? 'rtl' : 'ltr';
 	document.body.style.direction=direction;
 
+	var ie = /*@cc_on!@*/false;
 	var dts = document.getElementsByTagName('dt');
 	var uls = document.getElementsByTagName('ul');
 	var h2s = document.getElementsByTagName('h2');
@@ -1115,11 +1116,22 @@ function set_dir(direction)
 	var ltr_spec = document.getElementsByName('ltr-spec');
 	var rtl_spec = document.getElementsByName('rtl-spec');
 
+	var rtl_float = (ie) ? 'styleFloat' : 'cssFloat';
+
+//alert(rtl_spec.length);
+
 	if(direction == 'rtl')
 	{
 		for(j = 0; j < dts.length; j++)
 		{
-			dts[j].style.styleFloat='right';
+			if(ie)
+			{
+				dts[j].style.styleFloat='right';
+			}
+			else
+			{
+				dts[j].style.cssFloat='right';
+			}
 		}
 		for(j = 0; j < h2s.length; j++)
 		{
@@ -1151,7 +1163,14 @@ function set_dir(direction)
 	{
 		for(j = 0; j < dts.length; j++)
 		{
-			dts[j].style.styleFloat='left';
+			if(ie)
+			{
+				dts[j].style.styleFloat='left';
+			}
+			else
+			{
+				dts[j].style.cssFloat='left';
+			}
 		}
 		for(j = 0; j < h2s.length; j++)
 		{
@@ -1411,7 +1430,11 @@ function change_dbms($form)
 function sql_display($value)
 {
 	var $ie = /*@cc_on!@*/false;
-	$tags = document.getElementsByTagName('dbms');
+	var $tags = document.getElementsByTagName('dbms');
+	if($ie)
+	{
+		var $div_list = document.getElementsByTagName('div');
+	}
 
 	// show the dbms of type we have selected, hide all others except for non dbms specific
 	for ($i = 0; $i < $tags.length; $i++)
@@ -1420,8 +1443,20 @@ function sql_display($value)
 		{
 			continue;
 		}
-		$tag = document.getElementsByName($dbms);
-		$tag[$dbms].style.display = ($dbms == $value) ? '' : 'none';
+		if(!$ie)
+		{
+			$tags[$i].style.display = ($dbms == $value) ? '' : 'none';
+		}
+		else
+		{
+			for($j = 0; $j < $div_list.length; $j++)
+			{
+				if($div_list[$j].name == $dbms)
+				{
+					$div_list[$j].style.display = ($dbms == $value) ? '' : 'none';
+				}
+			}
+		}
 	}
 }
 
@@ -1469,7 +1504,13 @@ function sql_dropdown()
 		if (($position = in_array($type, $dbms, true)) !== false)
 		{
 			$options[$position] = '<option value=' + $dbms + '>' + $dbms + '</option>';
-			$ie_options[$ie_count++] = $dbms;
+			if($ie)
+			{
+				if(!in_array($ie_options, $dbms, false))
+				{
+					$ie_options[$ie_count++] = $dbms;
+				}
+			}
 		}
 	}
 
@@ -1592,6 +1633,7 @@ function toggle_edit(o)
 		</body>
 		</html>
 	</xsl:template>
+
 	<xsl:template name="give-header">
 		<fieldset>
 		<legend id="lang-atm">About this MOD</legend>
@@ -1715,6 +1757,9 @@ function toggle_edit(o)
 						<xsl:if test="@type = 'dependency'">
 							<span id="lang-link-d">Dependency</span>:
 						</xsl:if>
+						<xsl:if test="@type = 'template'">
+							<span id="lang-link-te">Template</span>:
+						</xsl:if>
 						<xsl:if test="@type = 'contrib'">
 							<span id="lang-link-c">Contrib</span>:
 						</xsl:if>
@@ -1727,22 +1772,19 @@ function toggle_edit(o)
 						<xsl:if test="@type = 'parent'">
 							<span id="lang-link-p">Parent</span>:
 						</xsl:if>
-						<xsl:if test="@type = 'template'">
-							<span id="lang-link-te">Template</span>:
-						</xsl:if>
 					</strong>&nbsp;<a href="{@href}"><xsl:value-of select="current()" /></a>
 				</li>
 			</xsl:for-each>
 		</ul>
 		<hr />
 		<div id="modDisclaimer">
-			<h3><span id="lang-dcl">Disclaimer</span><span id="lang-ont"> and other notes</span></h3>
+			<h3><span id="lang-dcl">Disclaimer</span>&nbsp;<span id="lang-ont">and other notes</span></h3>
 			<div class="mod-about">
 				<span class="corners-top"><span></span></span>
 					<div class="mod-about-padding">
 					<p><span id="lang-dclt">For security purposes, please check: <a href="http://www.phpbb.com/mods/">http://www.phpbb.com/mods/</a> for the latest version of this MOD. Downloading this MOD from other sites could cause malicious code to enter into your phpBB Forum. As such, phpBB will not offer support for MODs not offered in our MODs database, located at: <a href="http://www.phpbb.com/mods/">http://www.phpbb.com/mods/</a></span></p>
 					<p><span id="lang-ontt1">Before adding this MOD to your forum, you should back up all files related to this MOD.</span></p>
-					<p><span id="lang-ontt2">This MOD was designed for phpBB</span><xsl:text> </xsl:text><xsl:value-of select="mod:installation/mod:target-version" /><xsl:text> </xsl:text><span id="lang-ontt3"> and may not function as stated on other phpBB versions. MODs for phpBB 3.0 will <strong>not</strong> work on phpBB 2.0 and vice versa.</span></p>
+					<p><span id="lang-ontt2">This MOD was designed for phpBB</span><xsl:text> </xsl:text><xsl:value-of select="mod:installation/mod:target-version" /><xsl:text> </xsl:text>&nbsp;<span id="lang-ontt3">and may not function as stated on other phpBB versions. MODs for phpBB 3.0 will <strong>not</strong> work on phpBB 2.0 and vice versa.</span></p>
 					<xsl:for-each select="./mod:mod-version">
 						<xsl:if test="substring-before(current(), '.') = 0">
 							<p><strong class="red"><span id="lang-onttq">This MOD is development quality. It is not recommended that you install it on a live forum.</span></strong></p>
@@ -1753,7 +1795,7 @@ function toggle_edit(o)
 			</div>
 		</div>
 		<div>
-			<h3><span id="lang-lic">License</span><span id="lang-isp"> and English support</span></h3>
+			<h3><span id="lang-lic">License</span>&nbsp;<span id="lang-isp">and English support</span></h3>
 			<div class="mod-about">
 				<span class="corners-top"><span></span></span>
 					<div class="mod-about-padding">
@@ -1821,7 +1863,7 @@ function toggle_edit(o)
 									<span name="rtl-spec" style="display: none">
 										<xsl:if test="@status = 'past' and @from != 'N/A' and @from != 'n/a' and @from!=''">
 											<xsl:if test="@to != 'N/A' and @to != 'n/a' and @to!=''">
-											<span id="lang-a-c-f[{generate-id()}]]">From</span>:&nbsp;<xsl:value-of select="@from" />&nbsp;<span id="lang-a-c-t[{generate-id()}]]">to</span>:&nbsp;<xsl:value-of select="@to" />
+											<span id="lang-a-c-f[{generate-id()}]">From</span>:&nbsp;<xsl:value-of select="@from" />&nbsp;<span id="lang-a-c-t[{generate-id()}]]">to</span>:&nbsp;<xsl:value-of select="@to" />
 											</xsl:if>
 										</xsl:if>
 										<xsl:if test="@status = 'current' and @from != 'N/A' and @from != 'n/a' and @from!=''">
@@ -1873,6 +1915,7 @@ function toggle_edit(o)
 			</div>
 		</dd>
 	</xsl:template>
+
 	<xsl:template name="give-mod-history">
 		<xsl:if test="count(mod:entry) > 0">
 			<fieldset>
@@ -1892,6 +1935,7 @@ function toggle_edit(o)
 			</fieldset>
 		</xsl:if>
 	</xsl:template>
+
 	<xsl:template name="give-history-entry">
 		<div class="mod-about">
 			<span class="corners-top"><span></span></span>
@@ -1921,6 +1965,7 @@ function toggle_edit(o)
 			<span class="corners-bottom"><span></span></span>
 		</div>
 	</xsl:template>
+
 	<xsl:template name="give-history-entry-changelog">
 		<dt><xsl:value-of select="@lang" /></dt>
 		<dd lang="{@lang}">
@@ -1933,6 +1978,7 @@ function toggle_edit(o)
 			</ul>
 		</dd>
 	</xsl:template>
+
 	<xsl:template name="give-history-entry-changelog-single">
 		<ul>
 			<xsl:for-each select="mod:change">
@@ -2017,9 +2063,10 @@ function toggle_edit(o)
 		</xsl:if>
 		<xsl:call-template name="give-manual" />
 	</xsl:template>
+
 	<xsl:template name="give-sql">
 		<dbms type="{@dbms}">
-			<div class="content" name="{@dbms}" id="{@dbms}">
+			<div class="content" name="{@dbms}">
 				<xsl:if test="@dbms != ''">
 					<xsl:value-of select="@dbms" />:
 				</xsl:if>
@@ -2030,6 +2077,7 @@ function toggle_edit(o)
 			</div>
 		</dbms>
 	</xsl:template>
+
 	<xsl:template name="give-manual">
 		<xsl:if test="count(mod:diy-instructions)">
 			<h2 id="lang-diy">DIY instructions</h2>
@@ -2054,6 +2102,7 @@ function toggle_edit(o)
 			</div>
 		</xsl:if>
 	</xsl:template>
+
 	<xsl:template name="give-fileo">
 		<div class="mod-about">
 			<span class="corners-top"><span></span></span>
@@ -2167,6 +2216,7 @@ function toggle_edit(o)
 			<span class="corners-bottom"><span></span></span>
 		</div>
 	</xsl:template>
+
 	<xsl:template name="give-filez">
 		<h2 id="lang-fca">File copy</h2>
 		<ol id="file-copy">
@@ -2180,6 +2230,7 @@ function toggle_edit(o)
 			</xsl:for-each>
 		</ol>
 	</xsl:template>
+
 	<!-- add-line-breaks borrowed from http://www.stylusstudio.com/xsllist/200103/post40180.html -->
 	<xsl:template name="add-line-breaks">
 		<xsl:param name="string" select="." />
@@ -2213,4 +2264,5 @@ function toggle_edit(o)
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
+
 </xsl:stylesheet>

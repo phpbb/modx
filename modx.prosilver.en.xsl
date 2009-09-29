@@ -1745,7 +1745,7 @@ function toggle_edit(o)
 		<xsl:for-each select="../mod:action-group">
 			<xsl:call-template name="give-files-included"></xsl:call-template>
 		</xsl:for-each>
-		<h3 id="lang-addtl-modx">Additionalff MODX files</h3>
+		<h3 id="lang-addtl-modx">Additional MODX files</h3>
 		<xsl:if test="count(mod:link-group/mod:link) = 0">
 			<p id="lang-imn">This MOD has no additional MODX files.</p>
 		</xsl:if>

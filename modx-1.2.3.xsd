@@ -77,9 +77,6 @@
 															</xs:simpleContent>
 														</xs:complexType>
 													</xs:element>
-													<xs:extension base="xs:string">
-														<xs:attribute name="phpbbcom" form="unqualified" type="xs:string" use="optional" />
-													</xs:extension>
 													<xs:element name="homepage" type="xs:string" minOccurs="0" maxOccurs="1" />
 													<xs:element name="contributions" type="xs:string" minOccurs="0" maxOccurs="1" />
 													<xs:element name="contributions-group" minOccurs="0">

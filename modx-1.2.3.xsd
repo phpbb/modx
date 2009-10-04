@@ -72,7 +72,7 @@
 														<xs:complexType>
 															<xs:simpleContent msdata:ColumnName="username_Text" msdata:Ordinal="0">
 																<xs:extension base="xs:string">
-																	<xs:attribute name="phpbbcom" type="xs:string" use="optional" />
+																	<xs:attribute name="phpbbcom" form="unqualified" type="xs:string" use="optional" />
 																</xs:extension>
 															</xs:simpleContent>
 														</xs:complexType>

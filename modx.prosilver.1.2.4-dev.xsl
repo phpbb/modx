@@ -5,7 +5,7 @@
 <!DOCTYPE xsl:stylesheet[
 	<!ENTITY nbsp "&#160;">
 ]>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:mod="http://codepail.net/modx/modx-1.2.4-dev.xsd">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:mod="http://code.phpbb.com/svn/modxtools/modx/trunk/modx-1.2.4-dev.xsd">
 	<xsl:output method="html" omit-xml-declaration="no" indent="yes" />
 	<xsl:variable name="title" select="mod:mod/mod:header/mod:title" />
 	<xsl:variable name="version">

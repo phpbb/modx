@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.1.2.4-dev.xsl"?>
 <!--For security purposes, please check: http
 ://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
-<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.3.xsd">
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://codepail.net/modx/modx-1.2.4-dev.xsd">
 	<header>
 		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
-		
+
 		<title lang="en">Hello World</title>
 		<title lang="nl">Hallo Wereld</title>
-		
+
 		<description lang="en">Quick Start Tutorial sample</description>
 		<description lang="nl">Snel start tutorial voorbeeld</description>
-		
+
 		<author-notes lang="en">This is a tutorial, do not install this MOD</author-notes>
 		<author-notes lang="nl">Dit is een tutorial, installeer deze mod niet</author-notes>
-		
+
 		<author-group>
 			<author>
 				<realname>David Smith</realname>
@@ -22,7 +22,7 @@
 				<homepage>http://www.phpbb.com/mods/modx/</homepage>
       		<contributions-group>
       		  <contributions status="past" from="2006-01-01" position="Developer"/>
-      		</contributions-group>			 				
+      		</contributions-group>
 			</author>
 			<author>
 				<realname>Eric Faerber</realname>
@@ -30,29 +30,29 @@
       		<contributions-group>
       		  <contributions status="past" from="2006-01-01" to="2008-01-11" position="Developer"/>
       		  <contributions status="current" from="2008-01-11" position="Tester"/>
-      		  
-      		</contributions-group>			    				
+
+      		</contributions-group>
 			</author>
 			<author>
 			    <username phpbbcom="no">paul</username>
       		<contributions-group>
       		  <contributions status="past" from="2008-01-11" to="2009-05-01" position="Developer"></contributions>
       		</contributions-group>
-			</author>			
+			</author>
 			<author>
 			    <username>tumba25</username>
       		<contributions-group>
       		  <contributions status="current" from="2009-09-12" position="Developer"></contributions>
-      		</contributions-group>			    
-			</author>			
+      		</contributions-group>
+			</author>
 		</author-group>
-		
-		<mod-version>1.2.3</mod-version>
-		
+
+		<mod-version>1.2.4-dev</mod-version>
+
 		<installation>
 			<level>easy</level>
 			<time>60</time>
-			<target-version>3.0.5</target-version>
+			<target-version>3.0.6</target-version>
 		</installation>
 
 		<history>
@@ -76,7 +76,7 @@
 				<changelog lang="nl">
 					<change>MODX XSLT geupdated naar prosilver</change>
 					<change>MODX snel start tutorial aangepast om Nederlands voorbeeld in te voegen</change>
-				</changelog>        
+				</changelog>
 			</entry>
 			<entry>
 				<date>2008-09-10</date>
@@ -97,7 +97,7 @@
 				<changelog lang="nl">
 				    <change>De voorbeeld MODX MODX geupdated voor de nieuwe MODX 1.2.2 release</change>
 				</changelog>
-			</entry>			
+			</entry>
 			<entry>
 				<date>2009-09-20</date>
 				<rev-version>1.2.3</rev-version>
@@ -107,7 +107,7 @@
 				<changelog lang="nl">
 				    <change>De voorbeeld MODX MODX geupdated voor de nieuwe MODX 1.2.3 release</change>
 				</changelog>
-			</entry>			
+			</entry>
 		</history>
 
 		<link-group>
@@ -116,7 +116,7 @@
 			<link type="template-lang" href="nl-subsilver2-123.xml" lang="nl">Nederlandse subsilver2</link>
 		</link-group>
 	</header>
-	
+
 	<action-group>
 		<sql dbms="mysql"><![CDATA[ALTER TABLE phpbb_users ADD sample MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0']]></sql>
 		<sql dbms="mssql"><![CDATA[ALTER TABLE phpbb_users ADD sample_ms MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0']]></sql>
@@ -133,7 +133,7 @@
 			<file from="root/index.php" to="index.php" />
 			<file from="root/common.php" to="common.php" />
 		</copy>
-		
+
 		<open src="index.php">
 			<edit>
 				<comment lang="en">Here is a comment</comment>
@@ -182,10 +182,10 @@
 				</inline-edit>
 			</edit>
 		</open>
-		
+
 		<diy-instructions lang="en">CHMOD foo.php and bar.php to 777
 Open in your web browser and follow the instructions in db_install.php</diy-instructions>
-		
+
 		<diy-instructions lang="nl">CHMOD foo.php en bar.php naar 777
 Open je browser en volg de instructies in db_install.php</diy-instructions>
 	</action-group>

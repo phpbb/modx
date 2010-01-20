@@ -1,0 +1,2 @@
+Changes since MODX 1.2.3
+[CHANGE] Altered the urging to backup before installing a MOD to also include the database Bug #52545

@@ -5,7 +5,7 @@
 <!DOCTYPE xsl:stylesheet[
 	<!ENTITY nbsp "&#160;">
 ]>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:mod="http://www.phpbb.com/mods/xml/modx-1.2.3.xsd">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:mod="http://codepail.net/modx/modx-1.2.4-dev.xsd">
 	<xsl:output method="html" omit-xml-declaration="no" indent="yes" />
 	<xsl:variable name="title" select="mod:mod/mod:header/mod:title" />
 	<xsl:variable name="version">
@@ -643,7 +643,7 @@ var enStrings = "dir=ltr\n" +
 "lic=License\n" +
 "lict=This MOD has been licensed under the following license:\n" +
 "ont=and other notes\n" +
-"ontt1=Before adding this MOD to your forum, you should back up all files related to this MOD.\n" +
+"ontt1=Before adding this MOD to your forum, you should back up all files and databases related to this MOD.\n" +
 "ontt2=This MOD was designed for phpBB\n" +
 "ontt3=and may not function as stated on other phpBB versions. MODs for phpBB 3.0 will <strong>not</strong> work on phpBB 2.0 and vice versa.\n" +
 "onttq=This MOD is development quality. It is not recommended that you install it on a live forum.\n" +
@@ -1783,7 +1783,7 @@ function toggle_edit(o)
 				<span class="corners-top"><span></span></span>
 					<div class="mod-about-padding">
 					<p><span id="lang-dclt">For security purposes, please check: <a href="http://www.phpbb.com/mods/">http://www.phpbb.com/mods/</a> for the latest version of this MOD. Downloading this MOD from other sites could cause malicious code to enter into your phpBB Forum. As such, phpBB will not offer support for MODs not offered in our MODs database, located at: <a href="http://www.phpbb.com/mods/">http://www.phpbb.com/mods/</a></span></p>
-					<p><span id="lang-ontt1">Before adding this MOD to your forum, you should back up all files related to this MOD.</span></p>
+					<p><span id="lang-ontt1">Before adding this MOD to your forum, you should back up all files and databases related to this MOD.</span></p>
 					<p><span id="lang-ontt2">This MOD was designed for phpBB</span><xsl:text> </xsl:text><xsl:value-of select="mod:installation/mod:target-version" /><xsl:text> </xsl:text>&nbsp;<span id="lang-ontt3">and may not function as stated on other phpBB versions. MODs for phpBB 3.0 will <strong>not</strong> work on phpBB 2.0 and vice versa.</span></p>
 					<xsl:for-each select="./mod:mod-version">
 						<xsl:if test="substring-before(current(), '.') = 0">

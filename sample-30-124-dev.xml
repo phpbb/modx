@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="modx.prosilver.1.2.4-dev.xsl"?>
 <!--For security purposes, please check: http
 ://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
-<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://code.phpbb.com/svn/modxtools/modx/trunk/modx-1.2.4-dev.xsd">
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="modx-1.2.4-dev.xsd">
 	<header>
 		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
 
@@ -21,7 +21,7 @@
 				<username phpbbcom="no">smithy_dll</username>
 				<homepage>http://www.phpbb.com/mods/modx/</homepage>
       		<contributions-group>
-      		  <contributions status="past" from="2006-01-01" position="Developer"/>
+      		  <contributions status="past" from="2006-01-01" to="2007-11-01" position="Developer"/>
       		</contributions-group>
 			</author>
 			<author>
@@ -30,7 +30,6 @@
       		<contributions-group>
       		  <contributions status="past" from="2006-01-01" to="2008-01-11" position="Developer"/>
       		  <contributions status="current" from="2008-01-11" position="Tester"/>
-
       		</contributions-group>
 			</author>
 			<author>

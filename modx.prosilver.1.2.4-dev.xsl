@@ -5,7 +5,7 @@
 <!DOCTYPE xsl:stylesheet[
 	<!ENTITY nbsp "&#160;">
 ]>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:mod="http://code.phpbb.com/svn/modxtools/modx/trunk/modx-1.2.4-dev.xsd">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:mod="modx-1.2.4-dev.xsd">
 	<xsl:output method="html" omit-xml-declaration="no" indent="yes" />
 	<xsl:variable name="title" select="mod:mod/mod:header/mod:title" />
 	<xsl:variable name="version">
@@ -1824,23 +1824,31 @@ function toggle_edit(o)
 								<xsl:when test="@phpbbcom = 'no' or @phpbbcom = 'No' or @phpbbcom = 'NO'">
 									<dd name="author-dd"><span dir="ltr"><xsl:value-of select="$authorname" /></span></dd>
 								</xsl:when>
+
 								<xsl:otherwise>
-									<xsl:variable name="authortemp">
-										<xsl:call-template name="replaceCharsInString">
-											<xsl:with-param name="stringIn" select="string($authorname)"/>
-											<xsl:with-param name="charsIn" select="'#'"/>
-											<xsl:with-param name="charsOut" select="'%23'"/>
-										</xsl:call-template>
-									</xsl:variable>
 									<xsl:variable name="authorurl">
-										<xsl:call-template name="replaceCharsInString">
-											<xsl:with-param name="stringIn" select="string($authortemp)"/>
-											<xsl:with-param name="charsIn" select="' '"/>
-											<xsl:with-param name="charsOut" select="'%20'"/>
+										<xsl:call-template name="validate-username">
+											<xsl:with-param name="string-in" select="string($authorname)"/>
 										</xsl:call-template>
 									</xsl:variable>
-									<dd name="author-dd"><a dir="ltr" href="http://www.phpbb.com/community/memberlist.php?mode=viewprofile&amp;un={$authorurl}"><xsl:value-of select="$authorname" /></a></dd>
+
+									<xsl:variable name="browserEngine" select="system-property('xsl:vendor')" />
+									<xsl:choose>
+										<xsl:when test="$browserEngine='Opera'">
+											<xsl:variable name="operaurl">
+												<xsl:call-template name="validate-opera">
+													<xsl:with-param name="string-in" select="string($authorurl)"/>
+												</xsl:call-template>
+											</xsl:variable>
+											<dd name="author-dd"><a dir="ltr" href="http://www.phpbb.com/community/memberlist.php?mode=viewprofile&amp;un={$operaurl}"><xsl:value-of select="$authorname" /></a></dd>
+										</xsl:when>
+										<xsl:otherwise>
+											<dd name="author-dd"><a dir="ltr" href="http://www.phpbb.com/community/memberlist.php?mode=viewprofile&amp;un={$authorurl}"><xsl:value-of select="$authorname" /></a></dd>
+										</xsl:otherwise>
+
+									</xsl:choose>
 								</xsl:otherwise>
+
 							</xsl:choose>
 						</xsl:for-each>
 						<xsl:if test="mod:email != 'N/A' and mod:email != 'n/a' and mod:email != ''">
@@ -2263,6 +2271,277 @@ function toggle_edit(o)
 				<xsl:value-of select="$stringIn"/>
 			</xsl:otherwise>
 		</xsl:choose>
+	</xsl:template>
+
+	<!-- Replace some chars -->
+	<xsl:template name="validate-username">
+		<xsl:param name="string-in"/>
+
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+
+			<xsl:call-template name="replaceCharsInString">
+				<xsl:with-param name="stringIn" select="string($string-in)"/>
+				<xsl:with-param name="charsIn" select="'#'"/>
+				<xsl:with-param name="charsOut" select="'%23'"/>
+			</xsl:call-template>
+
+		</xsl:with-param><xsl:with-param name="charsIn" select="'+'"/><xsl:with-param name="charsOut" select="'%2B'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="' '"/><xsl:with-param name="charsOut" select="'%20'"/></xsl:call-template>
+
+	</xsl:template>
+
+	<!-- This is only needed for Opera support, hiding it here at the bottom. -->
+	<xsl:template name="validate-opera">
+		<xsl:param name="string-in"/>
+
+		<!-- This doesn't follow any coding guidelines. But is easier to read this way -->
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+
+			<xsl:call-template name="replaceCharsInString">
+				<xsl:with-param name="stringIn" select="string($string-in)"/>
+						<xsl:with-param name="charsIn" select="'é'"/>
+						<xsl:with-param name="charsOut" select="'%C3%A9'"/>
+			</xsl:call-template>
+
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ÿ'"/><xsl:with-param name="charsOut" select="'%C3%BF'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'þ'"/><xsl:with-param name="charsOut" select="'%C3%BE'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ý'"/><xsl:with-param name="charsOut" select="'%C3%BD'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ü'"/><xsl:with-param name="charsOut" select="'%C3%BC'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'û'"/><xsl:with-param name="charsOut" select="'%C3%BB'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ú'"/><xsl:with-param name="charsOut" select="'%C3%BA'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ù'"/><xsl:with-param name="charsOut" select="'%C3%B9'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ø'"/><xsl:with-param name="charsOut" select="'%C3%B8'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'÷'"/><xsl:with-param name="charsOut" select="'%C3%B7'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ö'"/><xsl:with-param name="charsOut" select="'%C3%B6'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'õ'"/><xsl:with-param name="charsOut" select="'%C3%B5'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ô'"/><xsl:with-param name="charsOut" select="'%C3%B4'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ó'"/><xsl:with-param name="charsOut" select="'%C3%B3'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ò'"/><xsl:with-param name="charsOut" select="'%C3%B2'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ñ'"/><xsl:with-param name="charsOut" select="'%C3%B1'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ð'"/><xsl:with-param name="charsOut" select="'%C3%B0'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ï'"/><xsl:with-param name="charsOut" select="'%C3%AF'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'î'"/><xsl:with-param name="charsOut" select="'%C3%AE'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'í'"/><xsl:with-param name="charsOut" select="'%C3%AD'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ì'"/><xsl:with-param name="charsOut" select="'%C3%AC'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ë'"/><xsl:with-param name="charsOut" select="'%C3%AB'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ê'"/><xsl:with-param name="charsOut" select="'%C3%AA'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'é'"/><xsl:with-param name="charsOut" select="'%C3%A9'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'è'"/><xsl:with-param name="charsOut" select="'%C3%A8'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ç'"/><xsl:with-param name="charsOut" select="'%C3%A7'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'æ'"/><xsl:with-param name="charsOut" select="'%C3%A6'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'å'"/><xsl:with-param name="charsOut" select="'%C3%A5'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ä'"/><xsl:with-param name="charsOut" select="'%C3%A4'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ã'"/><xsl:with-param name="charsOut" select="'%C3%A3'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'â'"/><xsl:with-param name="charsOut" select="'%C3%A2'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'á'"/><xsl:with-param name="charsOut" select="'%C3%A1'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'à'"/><xsl:with-param name="charsOut" select="'%C3%A0'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ß'"/><xsl:with-param name="charsOut" select="'%C3%9F'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Þ'"/><xsl:with-param name="charsOut" select="'%C3%9E'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Ý'"/><xsl:with-param name="charsOut" select="'%C3%9D'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Ü'"/><xsl:with-param name="charsOut" select="'%C3%9C'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Û'"/><xsl:with-param name="charsOut" select="'%C3%9B'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Ú'"/><xsl:with-param name="charsOut" select="'%C3%9A'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Ù'"/><xsl:with-param name="charsOut" select="'%C3%99'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Ø'"/><xsl:with-param name="charsOut" select="'%C3%98'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'×'"/><xsl:with-param name="charsOut" select="'%C3%97'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Ö'"/><xsl:with-param name="charsOut" select="'%C3%96'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Õ'"/><xsl:with-param name="charsOut" select="'%C3%95'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Ô'"/><xsl:with-param name="charsOut" select="'%C3%94'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Ó'"/><xsl:with-param name="charsOut" select="'%C3%93'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Ò'"/><xsl:with-param name="charsOut" select="'%C3%92'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Ñ'"/><xsl:with-param name="charsOut" select="'%C3%91'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Ð'"/><xsl:with-param name="charsOut" select="'%C3%90'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Ï'"/><xsl:with-param name="charsOut" select="'%C3%8F'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Î'"/><xsl:with-param name="charsOut" select="'%C3%8E'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Í'"/><xsl:with-param name="charsOut" select="'%C3%8D'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Ì'"/><xsl:with-param name="charsOut" select="'%C3%8C'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Ë'"/><xsl:with-param name="charsOut" select="'%C3%8B'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Ê'"/><xsl:with-param name="charsOut" select="'%C3%8A'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'É'"/><xsl:with-param name="charsOut" select="'%C3%89'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'È'"/><xsl:with-param name="charsOut" select="'%C3%88'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Ç'"/><xsl:with-param name="charsOut" select="'%C3%87'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Æ'"/><xsl:with-param name="charsOut" select="'%C3%86'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Å'"/><xsl:with-param name="charsOut" select="'%C3%85'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Ä'"/><xsl:with-param name="charsOut" select="'%C3%84'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Ã'"/><xsl:with-param name="charsOut" select="'%C3%83'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Â'"/><xsl:with-param name="charsOut" select="'%C3%82'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Á'"/><xsl:with-param name="charsOut" select="'%C3%81'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'À'"/><xsl:with-param name="charsOut" select="'%C3%80'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'¿'"/><xsl:with-param name="charsOut" select="'%C2%BF'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'¾'"/><xsl:with-param name="charsOut" select="'%C2%BE'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'½'"/><xsl:with-param name="charsOut" select="'%C2%BD'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'¼'"/><xsl:with-param name="charsOut" select="'%C2%BC'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'»'"/><xsl:with-param name="charsOut" select="'%C2%BB'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'º'"/><xsl:with-param name="charsOut" select="'%C2%BA'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'¹'"/><xsl:with-param name="charsOut" select="'%C2%B9'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'¸'"/><xsl:with-param name="charsOut" select="'%C2%B8'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'·'"/><xsl:with-param name="charsOut" select="'%C2%B7'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'¶'"/><xsl:with-param name="charsOut" select="'%C2%B6'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'µ'"/><xsl:with-param name="charsOut" select="'%C2%B5'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'´'"/><xsl:with-param name="charsOut" select="'%C2%B4'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'³'"/><xsl:with-param name="charsOut" select="'%C2%B3'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'²'"/><xsl:with-param name="charsOut" select="'%C2%B2'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'±'"/><xsl:with-param name="charsOut" select="'%C2%B1'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'°'"/><xsl:with-param name="charsOut" select="'%C2%B0'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'¯'"/><xsl:with-param name="charsOut" select="'%C2%AF'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'®'"/><xsl:with-param name="charsOut" select="'%C2%AE'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'¬'"/><xsl:with-param name="charsOut" select="'%C2%AC'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'«'"/><xsl:with-param name="charsOut" select="'%C2%AB'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ª'"/><xsl:with-param name="charsOut" select="'%C2%AA'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'©'"/><xsl:with-param name="charsOut" select="'%C2%A9'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'¨'"/><xsl:with-param name="charsOut" select="'%C2%A8'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'§'"/><xsl:with-param name="charsOut" select="'%C2%A7'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'¦'"/><xsl:with-param name="charsOut" select="'%C2%A6'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'¥'"/><xsl:with-param name="charsOut" select="'%C2%A5'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'¤'"/><xsl:with-param name="charsOut" select="'%C2%A4'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'£'"/><xsl:with-param name="charsOut" select="'%C2%A3'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'¢'"/><xsl:with-param name="charsOut" select="'%C2%A2'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'¡'"/><xsl:with-param name="charsOut" select="'%C2%A1'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Ÿ'"/><xsl:with-param name="charsOut" select="'%C5%B8'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ž'"/><xsl:with-param name="charsOut" select="'%C5%BE'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'œ'"/><xsl:with-param name="charsOut" select="'%C5%93'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'›'"/><xsl:with-param name="charsOut" select="'%E2%80%BA'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'š'"/><xsl:with-param name="charsOut" select="'%C5%A1'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'™'"/><xsl:with-param name="charsOut" select="'%E2%84%A2'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'˜'"/><xsl:with-param name="charsOut" select="'%CB%9C'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'—'"/><xsl:with-param name="charsOut" select="'%E2%80%94'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'–'"/><xsl:with-param name="charsOut" select="'%E2%80%93'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'•'"/><xsl:with-param name="charsOut" select="'%E2%80%A2'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'”'"/><xsl:with-param name="charsOut" select="'%E2%80%9D'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'“'"/><xsl:with-param name="charsOut" select="'%E2%80%9C'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'’'"/><xsl:with-param name="charsOut" select="'%E2%80%99'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'‘'"/><xsl:with-param name="charsOut" select="'%E2%80%98'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Ž'"/><xsl:with-param name="charsOut" select="'%C5%BD'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Œ'"/><xsl:with-param name="charsOut" select="'%C5%92'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'‹'"/><xsl:with-param name="charsOut" select="'%E2%80%B9'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'Š'"/><xsl:with-param name="charsOut" select="'%C5%A0'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'‰'"/><xsl:with-param name="charsOut" select="'%E2%80%B0'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ˆ'"/><xsl:with-param name="charsOut" select="'%CB%86'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'‡'"/><xsl:with-param name="charsOut" select="'%E2%80%A1'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'†'"/><xsl:with-param name="charsOut" select="'%E2%80%A0'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'„'"/><xsl:with-param name="charsOut" select="'%E2%80%9E'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'ƒ'"/><xsl:with-param name="charsOut" select="'%C6%92'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'€'"/><xsl:with-param name="charsOut" select="'%E2%82%AC'"/></xsl:call-template>
+
 	</xsl:template>
 
 </xsl:stylesheet>

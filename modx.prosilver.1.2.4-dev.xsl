@@ -511,6 +511,11 @@ div.endMOD { padding:0 5px; }
 						mhcls_ll.push('<xsl:value-of select="generate-id()"/>');
 					</xsl:if>
 				</xsl:for-each>
+
+				var link_ll = [];
+				<xsl:for-each select="mod:link-group/mod:link">
+					link_ll.push('<xsl:value-of select="generate-id()"/>');
+				</xsl:for-each>
 			</xsl:for-each>
 
 			var opens_ll = [];
@@ -720,7 +725,8 @@ var arrClasCnt = [
 	['iaft'	, iaddafters_ll		],
 	['ibef'	, iaddbefores_ll	],
 	['iinc'	, iincrements_ll	],
-	['mhe'	, mhes_ll			]
+	['mhe'	, mhes_ll			],
+	['link', link_ll]
 ];
 
 function startup()
@@ -1117,8 +1123,6 @@ function set_dir(direction)
 	var rtl_spec = document.getElementsByName('rtl-spec');
 
 	var rtl_float = (ie) ? 'styleFloat' : 'cssFloat';
-
-//alert(rtl_spec.length);
 
 	if(direction == 'rtl')
 	{
@@ -1755,22 +1759,22 @@ function toggle_edit(o)
 				<li lang="{@lang}">
 					<span class="link-group-lang"><xsl:value-of select="@lang" />&nbsp;</span><strong>
 						<xsl:if test="@type = 'dependency'">
-							<span id="lang-link-d">Dependency</span>:
+							<span id="lang-link-d[{generate-id()}]">Dependency</span>:
 						</xsl:if>
 						<xsl:if test="@type = 'template'">
-							<span id="lang-link-te">Template</span>:
+							<span id="lang-link-te[{generate-id()}]">Template</span>:
 						</xsl:if>
 						<xsl:if test="@type = 'contrib'">
-							<span id="lang-link-c">Contrib</span>:
+							<span id="lang-link-c[{generate-id()}]">Contrib</span>:
 						</xsl:if>
 						<xsl:if test="@type = 'language'">
-							<span id="lang-link-l">Language</span>:
+							<span id="lang-link-l[{generate-id()}]">Language</span>:
 						</xsl:if>
 						<xsl:if test="@type = 'template-lang'">
-							<span id="lang-link-tl">Template lang</span>:
+							<span id="lang-link-tl[{generate-id()}]">Template lang</span>:
 						</xsl:if>
 						<xsl:if test="@type = 'parent'">
-							<span id="lang-link-p">Parent</span>:
+							<span id="lang-link-p[{generate-id()}]">Parent</span>:
 						</xsl:if>
 					</strong>&nbsp;<a href="{@href}"><xsl:value-of select="current()" /></a>
 				</li>

@@ -2153,19 +2153,19 @@ function toggle_edit(o)
 							</xsl:if>
 							<xsl:if test="name() = 'action'">
 								<xsl:if test="@type = 'after-add'">
-									<h4 id="lang-aft[{generate-id()}]">Add after</h4>
+									<h4 id="lang-aft[{generate-id()}]" style="color: #009933;">Add after</h4>
 									<p><span id="lang-aftt[{generate-id()}]"><strong>Tip:</strong> Add these lines on a new blank line after the preceding line(s) to find.</span></p>
 								</xsl:if>
 								<xsl:if test="@type = 'before-add'">
-									<h4 id="lang-bef[{generate-id()}]">Add before</h4>
+									<h4 id="lang-bef[{generate-id()}]" style="color: #AC1987;">Add before</h4>
 									<p><span id="lang-beft[{generate-id()}]"><strong>Tip:</strong> Add these lines on a new blank line before the preceding line(s) to find.</span></p>
 								</xsl:if>
 								<xsl:if test="@type = 'replace-with'">
-									<h4 id="lang-rplw[{generate-id()}]">Replace with</h4>
+									<h4 id="lang-rplw[{generate-id()}]" style="color: #CF0000;">Replace with</h4>
 									<p><span id="lang-rplwt[{generate-id()}]"><strong>Tip:</strong> Replace the preceding line(s) to find with the following lines.</span></p>
 								</xsl:if>
 								<xsl:if test="@type = 'operation'">
-									<h4 id="lang-inc[{generate-id()}]">Increment</h4>
+									<h4 id="lang-inc[{generate-id()}]" style="color: #333333;">Increment</h4>
 									<p><span id="lang-inct[{generate-id()}]"><strong>Tip:</strong> This allows you to alter integers. For help on what each operator means, click here.</span></p>
 								</xsl:if>
 								<div class="codebox">
@@ -2190,19 +2190,19 @@ function toggle_edit(o)
 										</xsl:if>
 										<xsl:if test="name() = 'inline-action'">
 											<xsl:if test="@type = 'after-add'">
-												<h5 id="lang-iaft[{generate-id()}]">In-line Add after</h5>
+												<h5 id="lang-iaft[{generate-id()}]" style="color: #009933;">In-line Add after</h5>
 												<p><span id="lang-iaftt[{generate-id()}]"></span></p>
 											</xsl:if>
 											<xsl:if test="@type = 'before-add'">
-												<h5 id="lang-ibef[{generate-id()}]">In-line Add before</h5>
+												<h5 id="lang-ibef[{generate-id()}]" style="color: #AC1987;">In-line Add before</h5>
 												<p><span id="lang-ibeft[{generate-id()}]"></span></p>
 											</xsl:if>
 											<xsl:if test="@type = 'replace-with'">
-												<h5 id="lang-irplw[{generate-id()}]">In-line Replace with</h5>
+												<h5 id="lang-irplw[{generate-id()}]" style="color: #CF0000;">In-line Replace with</h5>
 												<p><span id="lang-irplwt[{generate-id()}]"></span></p>
 											</xsl:if>
 											<xsl:if test="@type = 'operation'">
-												<h5 id="lang-iinc[{generate-id()}]">In-line Increment</h5>
+												<h5 id="lang-iinc[{generate-id()}]" style="color: #333333	;">In-line Increment</h5>
 												<p><span id="lang-iinct[{generate-id()}]"><strong>Tip:</strong> This allows you to alter integers. For help on what each operator means, click here.</span></p>
 											</xsl:if>
 											<div class="codebox">

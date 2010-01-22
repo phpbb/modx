@@ -2161,7 +2161,7 @@ function toggle_edit(o)
 									<p><span id="lang-beft[{generate-id()}]"><strong>Tip:</strong> Add these lines on a new blank line before the preceding line(s) to find.</span></p>
 								</xsl:if>
 								<xsl:if test="@type = 'replace-with'">
-									<h4 id="lang-rplw[{generate-id()}]" style="color: #CF0000;">Replace with</h4>
+									<h4 id="lang-rplw[{generate-id()}]" style="color: #AE1616;">Replace with</h4>
 									<p><span id="lang-rplwt[{generate-id()}]"><strong>Tip:</strong> Replace the preceding line(s) to find with the following lines.</span></p>
 								</xsl:if>
 								<xsl:if test="@type = 'operation'">
@@ -2198,11 +2198,11 @@ function toggle_edit(o)
 												<p><span id="lang-ibeft[{generate-id()}]"></span></p>
 											</xsl:if>
 											<xsl:if test="@type = 'replace-with'">
-												<h5 id="lang-irplw[{generate-id()}]" style="color: #CF0000;">In-line Replace with</h5>
+												<h5 id="lang-irplw[{generate-id()}]" style="color: #AE1616;">In-line Replace with</h5>
 												<p><span id="lang-irplwt[{generate-id()}]"></span></p>
 											</xsl:if>
 											<xsl:if test="@type = 'operation'">
-												<h5 id="lang-iinc[{generate-id()}]" style="color: #333333	;">In-line Increment</h5>
+												<h5 id="lang-iinc[{generate-id()}]" style="color: #333333;">In-line Increment</h5>
 												<p><span id="lang-iinct[{generate-id()}]"><strong>Tip:</strong> This allows you to alter integers. For help on what each operator means, click here.</span></p>
 											</xsl:if>
 											<div class="codebox">

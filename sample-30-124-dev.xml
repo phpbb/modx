@@ -112,7 +112,7 @@
 		<link-group>
 			<link type="template" realname="my_style" href="style-my_style.xml" lang="en">my_style</link>
 			<link type="template" href="subsilver2-123.xml" lang="en">subsilver2</link>
-			<link type="template-lang" href="nl-subsilver2-123.xml" lang="nl">Nederlandse subsilver2</link>
+			<link type="template-lang" href="nl-subsilver2-123.xml" lang="en">Nederlandse subsilver2</link>
 		</link-group>
 	</header>
 

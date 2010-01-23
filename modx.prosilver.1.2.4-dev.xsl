@@ -670,8 +670,8 @@ var enStrings = "dir=ltr\n" +
 "aftt=<strong>Tip:</strong> Add these lines on a new blank line after the preceding line(s) to find.\n" +
 "bef=Add before\n" +
 "beft=<strong>Tip:</strong> Add these lines on a new blank line before the preceding line(s) to find.\n" +
-"inc=Increment\n" +
-"inct=<strong>Tip:</strong> This allows you to alter integers. For help on what each operator means, click here.\n" +
+"inc=Operation\n" +
+"inct=<strong>Tip:</strong> This allows you to alter integers.\n" +
 "ifnd=In-line Find\n" +
 "ifndt=<strong>Tip:</strong> This is a partial match of a line for in-line operations.\n" +
 "irplw=In-line Replace with\n" +
@@ -680,8 +680,8 @@ var enStrings = "dir=ltr\n" +
 "iaftt=\n" +
 "ibef=In-line Add before\n" +
 "ibeft=\n" +
-"iinc=In-line Increment\n" +
-"iinct=<strong>Tip:</strong> This allows you to alter integers. For help on what each operator means, click here.\n" +
+"iinc=In-line Operation\n" +
+"iinct=<strong>Tip:</strong> This allows you to alter integers.\n" +
 "diy=DIY instructions\n" +
 "diyt=These are manual instructions that cannot be performed automatically. You should follow these instructions carefully.\n" +
 "eom=Save all files. End of MOD.\n" +
@@ -698,7 +698,9 @@ var enStrings = "dir=ltr\n" +
 "link-d=Dependency\n" +
 "link-l=Language\n" +
 "link-p=Parent\n" +
+"link-php=PHP install file\n" +
 "link-te=Template\n" +
+"link-txt=Text file\n" +
 "link-tl=Template lang\n" +
 "atm=About this MOD";
 
@@ -1758,23 +1760,29 @@ function toggle_edit(o)
 			<xsl:for-each select="mod:link-group/mod:link">
 				<li lang="{@lang}">
 					<span class="link-group-lang"><xsl:value-of select="@lang" />&nbsp;</span><strong>
-						<xsl:if test="@type = 'dependency'">
-							<span id="lang-link-d[{generate-id()}]">Dependency</span>:
-						</xsl:if>
-						<xsl:if test="@type = 'template'">
-							<span id="lang-link-te[{generate-id()}]">Template</span>:
-						</xsl:if>
 						<xsl:if test="@type = 'contrib'">
 							<span id="lang-link-c[{generate-id()}]">Contrib</span>:
+						</xsl:if>
+						<xsl:if test="@type = 'dependency'">
+							<span id="lang-link-d[{generate-id()}]">Dependency</span>:
 						</xsl:if>
 						<xsl:if test="@type = 'language'">
 							<span id="lang-link-l[{generate-id()}]">Language</span>:
 						</xsl:if>
+						<xsl:if test="@type = 'parent'">
+							<span id="lang-link-p[{generate-id()}]">Parent</span>:
+						</xsl:if>
+						<xsl:if test="@type = 'php-installer'">
+							<span id="lang-link-php[{generate-id()}]">PHP install file</span>:
+						</xsl:if>
+						<xsl:if test="@type = 'template'">
+							<span id="lang-link-te[{generate-id()}]">Template</span>:
+						</xsl:if>
 						<xsl:if test="@type = 'template-lang'">
 							<span id="lang-link-tl[{generate-id()}]">Template lang</span>:
 						</xsl:if>
-						<xsl:if test="@type = 'parent'">
-							<span id="lang-link-p[{generate-id()}]">Parent</span>:
+						<xsl:if test="@type = 'text'">
+							<span id="lang-link-txt[{generate-id()}]">Text file</span>:
 						</xsl:if>
 					</strong>&nbsp;<a href="{@href}"><xsl:value-of select="current()" /></a>
 				</li>
@@ -2165,8 +2173,8 @@ function toggle_edit(o)
 									<p><span id="lang-rplwt[{generate-id()}]"><strong>Tip:</strong> Replace the preceding line(s) to find with the following lines.</span></p>
 								</xsl:if>
 								<xsl:if test="@type = 'operation'">
-									<h4 id="lang-inc[{generate-id()}]" style="color: #333333;">Increment</h4>
-									<p><span id="lang-inct[{generate-id()}]"><strong>Tip:</strong> This allows you to alter integers. For help on what each operator means, click here.</span></p>
+									<h4 id="lang-inc[{generate-id()}]" style="color: #333333;">Operation</h4>
+									<p><span id="lang-inct[{generate-id()}]"><strong>Tip:</strong> This allows you to alter integers.</span></p>
 								</xsl:if>
 								<div class="codebox">
 									<div class="codeHead"><span id="lang-cde-c[{generate-id()}]">Code:</span><a href="#" onclick="select_code(this); return false;" class="codeSelect"><span id="lang-cde-sa[{generate-id()}]">Select all</span></a></div>
@@ -2202,8 +2210,8 @@ function toggle_edit(o)
 												<p><span id="lang-irplwt[{generate-id()}]"></span></p>
 											</xsl:if>
 											<xsl:if test="@type = 'operation'">
-												<h5 id="lang-iinc[{generate-id()}]" style="color: #333333;">In-line Increment</h5>
-												<p><span id="lang-iinct[{generate-id()}]"><strong>Tip:</strong> This allows you to alter integers. For help on what each operator means, click here.</span></p>
+												<h5 id="lang-iinc[{generate-id()}]" style="color: #333333;">In-line Operation</h5>
+												<p><span id="lang-iinct[{generate-id()}]"><strong>Tip:</strong> This allows you to alter integers.</span></p>
 											</xsl:if>
 											<div class="codebox">
 												<div class="codeHead"><span id="lang-cde-c[{generate-id()}]">Code:</span><a href="#" onclick="select_code(this); return false;" class="codeSelect"><span id="lang-cde-sa[{generate-id()}]">Select All</span></a></div>

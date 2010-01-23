@@ -41,7 +41,6 @@
 							<xs:element name="link-group" minOccurs="0" maxOccurs="1">
 
 								<xs:complexType>
-
 									<xs:choice>
 										<xs:element name="link" minOccurs="1" maxOccurs="unbounded">
 											<xs:complexType>
@@ -57,7 +56,6 @@
 										</xs:element>
 									</xs:choice>
 								</xs:complexType>
-
 							</xs:element>
 
 							<xs:element name="author-group" minOccurs="1" maxOccurs="1">
@@ -321,12 +319,14 @@
 	</xs:simpleType>
 	<xs:simpleType name="linkTypes">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="dependency" />
-			<xs:enumeration value="template" />
 			<xs:enumeration value="contrib" />
+			<xs:enumeration value="dependency" />
 			<xs:enumeration value="language" />
-			<xs:enumeration value="template-lang" />
 			<xs:enumeration value="parent" />
+			<xs:enumeration value="php-installer" />
+			<xs:enumeration value="template" />
+			<xs:enumeration value="template-lang" />
+			<xs:enumeration value="text" />
 		</xs:restriction>
 	</xs:simpleType>
 </xs:schema>

@@ -2291,6 +2291,7 @@ function toggle_edit(o)
 
 		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
 		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
 
 			<xsl:call-template name="replaceCharsInString">
 				<xsl:with-param name="stringIn" select="string($string-in)"/>
@@ -2298,8 +2299,9 @@ function toggle_edit(o)
 				<xsl:with-param name="charsOut" select="'%23'"/>
 			</xsl:call-template>
 
+		</xsl:with-param><xsl:with-param name="charsIn" select="'&amp;'"/><xsl:with-param name="charsOut" select="'%26'"/></xsl:call-template> <!-- & -->
 		</xsl:with-param><xsl:with-param name="charsIn" select="'+'"/><xsl:with-param name="charsOut" select="'%2B'"/></xsl:call-template>
-		</xsl:with-param><xsl:with-param name="charsIn" select="' '"/><xsl:with-param name="charsOut" select="'%20'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="' '"/><xsl:with-param name="charsOut" select="'%20'"/></xsl:call-template> <!-- space -->
 
 	</xsl:template>
 
@@ -2308,6 +2310,8 @@ function toggle_edit(o)
 		<xsl:param name="string-in"/>
 
 		<!-- This doesn't follow any coding guidelines. But is easier to read this way -->
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
+		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
 		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
 		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
 		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
@@ -2550,8 +2554,10 @@ function toggle_edit(o)
 		</xsl:with-param><xsl:with-param name="charsIn" select="'ˆ'"/><xsl:with-param name="charsOut" select="'%CB%86'"/></xsl:call-template>
 		</xsl:with-param><xsl:with-param name="charsIn" select="'‡'"/><xsl:with-param name="charsOut" select="'%E2%80%A1'"/></xsl:call-template>
 		</xsl:with-param><xsl:with-param name="charsIn" select="'†'"/><xsl:with-param name="charsOut" select="'%E2%80%A0'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'…'"/><xsl:with-param name="charsOut" select="'%E2%80%A6'"/></xsl:call-template>
 		</xsl:with-param><xsl:with-param name="charsIn" select="'„'"/><xsl:with-param name="charsOut" select="'%E2%80%9E'"/></xsl:call-template>
 		</xsl:with-param><xsl:with-param name="charsIn" select="'ƒ'"/><xsl:with-param name="charsOut" select="'%C6%92'"/></xsl:call-template>
+		</xsl:with-param><xsl:with-param name="charsIn" select="'‚'"/><xsl:with-param name="charsOut" select="'%E2%80%9A'"/></xsl:call-template>
 		</xsl:with-param><xsl:with-param name="charsIn" select="'€'"/><xsl:with-param name="charsOut" select="'%E2%82%AC'"/></xsl:call-template>
 
 	</xsl:template>

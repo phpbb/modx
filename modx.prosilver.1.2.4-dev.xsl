@@ -702,7 +702,7 @@ var enStrings = "dir=ltr\n" +
 "link-te=Template\n" +
 "link-txt=Text file\n" +
 "link-tl=Template lang\n" +
-"php-version=Required PHP version:\n" +
+"php-version=Minimum PHP version:\n" +
 "or-better=or later\n" +
 "atm=About this MOD";
 
@@ -1701,7 +1701,7 @@ function toggle_edit(o)
 					</xsl:for-each>
 					<xsl:for-each select="mod:requirements">
 						<xsl:if test="mod:php-version != 'N/A' and mod:php-version != 'n/a' and mod:php-version != ''">
-							<dt id="lang-php-version" name="left4px">Required PHP version:</dt>
+							<dt id="lang-php-version" name="left4px">Minimum PHP version:</dt>
 							<dd class="mod-about">
 								<div class="inner">
 								<p><xsl:value-of select="mod:php-version" />&nbsp;<span id="lang-or-better">or later</span></p>

@@ -20,6 +20,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
+
 							<xs:element name="description" nillable="false" minOccurs="1" maxOccurs="unbounded">
 								<xs:complexType>
 									<xs:simpleContent msdata:ColumnName="description_Text" msdata:Ordinal="1">
@@ -29,6 +30,15 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
+
+							<xs:element name="requirements" minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:choice maxOccurs="unbounded">
+										<xs:element name="php-version" type="xs:string" minOccurs="0" maxOccurs="1" />
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+
 							<xs:element name="author-notes" nillable="false" minOccurs="0" maxOccurs="unbounded">
 								<xs:complexType>
 									<xs:simpleContent msdata:ColumnName="author-notes_Text" msdata:Ordinal="1">
@@ -38,8 +48,8 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="link-group" minOccurs="0" maxOccurs="1">
 
+							<xs:element name="link-group" minOccurs="0" maxOccurs="1">
 								<xs:complexType>
 									<xs:choice>
 										<xs:element name="link" minOccurs="1" maxOccurs="unbounded">

@@ -689,7 +689,7 @@ var enStrings = "dir=ltr\n" +
 "slg=Select language:\n" +
 "dbms=Select Database Type:\n" +
 "foot=MOD UA XSLT File Copyright &#169; 2007 The phpBB Group, this MOD is copyright to the authors listed above.\n" +
-"regex=This find contains an advanced feature known as regular expressions, click here to learn more.\n" +
+"regex=This find contains an advanced feature known as regular expressions.\n" +
 "mhe-v=- Version\n" +
 "mh=MOD history\n" +
 "addtl-modx=Additional MODX files\n" +
@@ -702,6 +702,8 @@ var enStrings = "dir=ltr\n" +
 "link-te=Template\n" +
 "link-txt=Text file\n" +
 "link-tl=Template lang\n" +
+"php-version=Required PHP version:\n" +
+"or-better=or later\n" +
 "atm=About this MOD";
 
 var box = codes_ll;
@@ -1642,7 +1644,7 @@ function toggle_edit(o)
 
 	<xsl:template name="give-header">
 		<fieldset>
-		<legend id="lang-atm">About this MOD</legend>
+			<legend id="lang-atm">About this MOD</legend>
 			<div class="mod-about">
 				<span class="corners-top"><span></span></span>
 				<dl>
@@ -1697,46 +1699,56 @@ function toggle_edit(o)
 					<xsl:for-each select="mod:installation">
 						<xsl:call-template name="give-installation"></xsl:call-template>
 					</xsl:for-each>
+					<xsl:for-each select="mod:requirements">
+						<xsl:if test="mod:php-version != 'N/A' and mod:php-version != 'n/a' and mod:php-version != ''">
+							<dt id="lang-php-version" name="left4px">Required PHP version:</dt>
+							<dd class="mod-about">
+								<div class="inner">
+								<p><xsl:value-of select="mod:php-version" />&nbsp;<span id="lang-or-better">or later</span></p>
+								</div>
+							</dd>
+						</xsl:if>
+					</xsl:for-each>
 					<xsl:if test="mod:author-notes != 'N/A' and mod:author-notes != 'n/a' and mod:author-notes != ''">
-					<dt id="lang-ant" name="left4px">Author notes:</dt>
-					<dd>
-						<xsl:if test="count(mod:author-notes) > 1">
-							<dl id="author-notes" class="nopadding">
-								<xsl:for-each select="mod:author-notes">
-									<dt><xsl:value-of select="@lang" /></dt>
-									<dd lang="{@lang}">
-										<p>
-											<xsl:call-template name="add-line-breaks">
-												<xsl:with-param name="string"><xsl:value-of select="current()" /></xsl:with-param>
-											</xsl:call-template>
-										</p>
-									</dd>
-								</xsl:for-each>
-							</dl>
-						</xsl:if>
-						<xsl:if test="count(mod:author-notes) = 1">
-							<p lang="{@lang}">
-								<xsl:call-template name="add-line-breaks">
-									<xsl:with-param name="string"><xsl:value-of select="mod:author-notes" /></xsl:with-param>
-								</xsl:call-template>
-							</p>
-						</xsl:if>
-					</dd>
+						<dt id="lang-ant" name="left4px">Author notes:</dt>
+						<dd>
+							<xsl:if test="count(mod:author-notes) > 1">
+								<dl id="author-notes" class="nopadding">
+									<xsl:for-each select="mod:author-notes">
+										<dt><xsl:value-of select="@lang" /></dt>
+										<dd lang="{@lang}">
+											<p>
+												<xsl:call-template name="add-line-breaks">
+													<xsl:with-param name="string"><xsl:value-of select="current()" /></xsl:with-param>
+												</xsl:call-template>
+											</p>
+										</dd>
+									</xsl:for-each>
+								</dl>
+							</xsl:if>
+							<xsl:if test="count(mod:author-notes) = 1">
+								<p lang="{@lang}">
+									<xsl:call-template name="add-line-breaks">
+										<xsl:with-param name="string"><xsl:value-of select="mod:author-notes" /></xsl:with-param>
+									</xsl:call-template>
+								</p>
+							</xsl:if>
+						</dd>
 					</xsl:if>
 				</dl>
 				<span class="corners-bottom"><span></span></span>
 			</div>
 		</fieldset>
 		<fieldset>
-		<xsl:for-each select="mod:author-group">
-			<xsl:if test="count(mod:author) > 1">
-				<legend id="lang-aus">Authors</legend>
-			</xsl:if>
-			<xsl:if test="count(mod:author) = 1">
-				<legend id="lang-au">Author</legend>
-			</xsl:if>
-			<xsl:call-template name="give-authors"></xsl:call-template>
-		</xsl:for-each>
+			<xsl:for-each select="mod:author-group">
+				<xsl:if test="count(mod:author) > 1">
+					<legend id="lang-aus">Authors</legend>
+				</xsl:if>
+				<xsl:if test="count(mod:author) = 1">
+					<legend id="lang-au">Author</legend>
+				</xsl:if>
+				<xsl:call-template name="give-authors"></xsl:call-template>
+			</xsl:for-each>
 		</fieldset>
 		<xsl:if test="count(../mod:action-group/mod:open) > 0">
 			<h3 id="lang-fte">Files to edit</h3>
@@ -1759,7 +1771,8 @@ function toggle_edit(o)
 		<ul class="link-group" id="link-group">
 			<xsl:for-each select="mod:link-group/mod:link">
 				<li lang="{@lang}">
-					<span class="link-group-lang"><xsl:value-of select="@lang" />&nbsp;</span><strong>
+					<span class="link-group-lang"><xsl:value-of select="@lang" />&nbsp;</span>
+					<strong>
 						<xsl:if test="@type = 'contrib'">
 							<span id="lang-link-c[{generate-id()}]">Contrib</span>:
 						</xsl:if>
@@ -1784,7 +1797,8 @@ function toggle_edit(o)
 						<xsl:if test="@type = 'text'">
 							<span id="lang-link-txt[{generate-id()}]">Text file</span>:
 						</xsl:if>
-					</strong>&nbsp;<a href="{@href}"><xsl:value-of select="current()" /></a>
+					</strong>
+					&nbsp;<a href="{@href}"><xsl:value-of select="current()" /></a>
 				</li>
 			</xsl:for-each>
 		</ul>
@@ -1793,7 +1807,7 @@ function toggle_edit(o)
 			<h3><span id="lang-dcl">Disclaimer</span>&nbsp;<span id="lang-ont">and other notes</span></h3>
 			<div class="mod-about">
 				<span class="corners-top"><span></span></span>
-					<div class="mod-about-padding">
+				<div class="mod-about-padding">
 					<p><span id="lang-dclt">For security purposes, please check: <a href="http://www.phpbb.com/mods/">http://www.phpbb.com/mods/</a> for the latest version of this MOD. Downloading this MOD from other sites could cause malicious code to enter into your phpBB Forum. As such, phpBB will not offer support for MODs not offered in our MODs database, located at: <a href="http://www.phpbb.com/mods/">http://www.phpbb.com/mods/</a></span></p>
 					<p><span id="lang-ontt1">Before adding this MOD to your forum, you should back up all files and databases related to this MOD.</span></p>
 					<p><span id="lang-ontt2">This MOD was designed for phpBB</span><xsl:text> </xsl:text><xsl:value-of select="mod:installation/mod:target-version" /><xsl:text> </xsl:text>&nbsp;<span id="lang-ontt3">and may not function as stated on other phpBB versions. MODs for phpBB 3.0 will <strong>not</strong> work on phpBB 2.0 and vice versa.</span></p>
@@ -1802,7 +1816,7 @@ function toggle_edit(o)
 							<p><strong class="red"><span id="lang-onttq">This MOD is development quality. It is not recommended that you install it on a live forum.</span></strong></p>
 						</xsl:if>
 					</xsl:for-each>
-					</div>
+				</div>
 				<span class="corners-bottom"><span></span></span>
 			</div>
 		</div>
@@ -1810,11 +1824,11 @@ function toggle_edit(o)
 			<h3><span id="lang-lic">License</span>&nbsp;<span id="lang-isp">and English support</span></h3>
 			<div class="mod-about">
 				<span class="corners-top"><span></span></span>
-					<div class="mod-about-padding">
+				<div class="mod-about-padding">
 					<p><span id="lang-lict">This MOD has been licensed under the following license:</span></p>
 					<p style='white-space:pre;'><a href="license.txt"><xsl:value-of select="mod:license" /></a></p>
 					<p><span id="lang-ispt">English support can be obtained at <a href="http://www.phpbb.com/mods/">http://www.phpbb.com/mods/</a> for released MODs.</span></p>
-					</div>
+				</div>
 				<span class="corners-bottom"><span></span></span>
 			</div>
 			<xsl:for-each select="mod:history">
@@ -2151,7 +2165,7 @@ function toggle_edit(o)
 								<h4 id="lang-fnd[{generate-id()}]">Find</h4>
 								<p><span id="lang-fndt[{generate-id()}]"><strong>Tip:</strong> This may be a partial find and not the whole line.</span>
 									<xsl:if test="@type = 'regex'">
-										<br /><em id="lang-regex[{generate-id()}]">This find contains an advanced feature known as regular expressions, click here to learn more.</em>
+										<br /><em id="lang-regex[{generate-id()}]">This find contains an advanced feature known as regular expressions.</em>
 									</xsl:if>
 								</p>
 								<div class="codebox">
@@ -2188,7 +2202,7 @@ function toggle_edit(o)
 											<h5 id="lang-ifnd[{generate-id()}]">In-line Find</h5>
 											<p><span id="lang-ifndt[{generate-id()}]"><strong>Tip:</strong> This is a partial match of a line for in-line operations.</span>
 												<xsl:if test="@type = 'regex'">
-													<br /><em id="lang-regex[{generate-id()}]">This find contains an advanced feature known as regular expressions, click here to learn more.</em>
+													<br /><em id="lang-regex[{generate-id()}]">This find contains an advanced feature known as regular expressions.</em>
 												</xsl:if>
 											</p>
 											<div class="codebox">
@@ -2302,7 +2316,6 @@ function toggle_edit(o)
 		</xsl:with-param><xsl:with-param name="charsIn" select="'&amp;'"/><xsl:with-param name="charsOut" select="'%26'"/></xsl:call-template> <!-- & -->
 		</xsl:with-param><xsl:with-param name="charsIn" select="'+'"/><xsl:with-param name="charsOut" select="'%2B'"/></xsl:call-template>
 		</xsl:with-param><xsl:with-param name="charsIn" select="' '"/><xsl:with-param name="charsOut" select="'%20'"/></xsl:call-template> <!-- space -->
-
 	</xsl:template>
 
 	<!-- This is only needed for Opera support, hiding it here at the bottom. -->
@@ -2559,7 +2572,6 @@ function toggle_edit(o)
 		</xsl:with-param><xsl:with-param name="charsIn" select="'ƒ'"/><xsl:with-param name="charsOut" select="'%C6%92'"/></xsl:call-template>
 		</xsl:with-param><xsl:with-param name="charsIn" select="'‚'"/><xsl:with-param name="charsOut" select="'%E2%80%9A'"/></xsl:call-template>
 		</xsl:with-param><xsl:with-param name="charsIn" select="'€'"/><xsl:with-param name="charsOut" select="'%E2%82%AC'"/></xsl:call-template>
-
 	</xsl:template>
 
 </xsl:stylesheet>

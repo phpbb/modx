@@ -54,6 +54,10 @@
 			<target-version>3.0.6</target-version>
 		</installation>
 
+		<requirements>
+			<php-version>5.2.0</php-version>
+		</requirements>
+
 		<history>
 			<entry>
 				<date>2006-03-19</date>

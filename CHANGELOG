@@ -1,0 +1,11 @@
+Changes since MODX 1.2.3
+[FIX] Altered the urging to backup files before installing a MOD to also include the database Bug #52545
+[FIX] Now MODX should support all chars in links, even with Opera. Bug #52575
+[FIX] All links are translated. Bug #52135
+
+[CHANGE] Color coded add-after, add-before, replace-with and operation.
+[CHANGE] Changed text Increment to Operation.
+[CHANGE] Removed "For help on what each operator means, click here." from the language since there was no link to click.
+
+[FEATURE] Added attribute text to the link tag. For text files.
+[FEATURE] Added attribute php-installer to the link tag. For php install files.

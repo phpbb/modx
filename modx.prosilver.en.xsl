@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- MODX by the phpBB MOD Team XSL file v1.2.3 copyright 2005-2009 the phpBB MOD Team.
+<!-- MODX by the phpBB MOD Team XSL file v1.2.4 copyright 2005-2010 the phpBB MOD Team.
 	This file is released under the GNU GPL version 2.  See license.txt.
 	$Id$ -->
 <!DOCTYPE xsl:stylesheet[
 	<!ENTITY nbsp "&#160;">
 ]>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:mod="modx-1.2.4-dev.xsd">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:mod="http://www.phpbb.com/mods/xml/modx-1.2.4.xsd">
 	<xsl:output method="html" omit-xml-declaration="no" indent="yes" />
 	<xsl:variable name="title" select="mod:mod/mod:header/mod:title" />
 	<xsl:variable name="version">
@@ -702,8 +702,6 @@ var enStrings = "dir=ltr\n" +
 "link-te=Template\n" +
 "link-txt=Text file\n" +
 "link-tl=Template lang\n" +
-"php-version=Required PHP version:\n" +
-"or-better=or later\n" +
 "atm=About this MOD";
 
 var box = codes_ll;
@@ -1699,16 +1697,6 @@ function toggle_edit(o)
 					<xsl:for-each select="mod:installation">
 						<xsl:call-template name="give-installation"></xsl:call-template>
 					</xsl:for-each>
-					<xsl:for-each select="mod:requirements">
-						<xsl:if test="mod:php-version != 'N/A' and mod:php-version != 'n/a' and mod:php-version != ''">
-							<dt id="lang-php-version" name="left4px">Required PHP version:</dt>
-							<dd class="mod-about">
-								<div class="inner">
-								<p><xsl:value-of select="mod:php-version" />&nbsp;<span id="lang-or-better">or later</span></p>
-								</div>
-							</dd>
-						</xsl:if>
-					</xsl:for-each>
 					<xsl:if test="mod:author-notes != 'N/A' and mod:author-notes != 'n/a' and mod:author-notes != ''">
 						<dt id="lang-ant" name="left4px">Author notes:</dt>
 						<dd>
@@ -2307,11 +2295,11 @@ function toggle_edit(o)
 		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
 		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
 
-			<xsl:call-template name="replaceCharsInString">
-				<xsl:with-param name="stringIn" select="string($string-in)"/>
-				<xsl:with-param name="charsIn" select="'#'"/>
-				<xsl:with-param name="charsOut" select="'%23'"/>
-			</xsl:call-template>
+		<xsl:call-template name="replaceCharsInString">
+			<xsl:with-param name="stringIn" select="string($string-in)"/>
+			<xsl:with-param name="charsIn" select="'#'"/>
+			<xsl:with-param name="charsOut" select="'%23'"/>
+		</xsl:call-template>
 
 		</xsl:with-param><xsl:with-param name="charsIn" select="'&amp;'"/><xsl:with-param name="charsOut" select="'%26'"/></xsl:call-template> <!-- & -->
 		</xsl:with-param><xsl:with-param name="charsIn" select="'+'"/><xsl:with-param name="charsOut" select="'%2B'"/></xsl:call-template>
@@ -2445,11 +2433,11 @@ function toggle_edit(o)
 		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
 		<xsl:call-template name="replaceCharsInString"><xsl:with-param name="stringIn">
 
-			<xsl:call-template name="replaceCharsInString">
-				<xsl:with-param name="stringIn" select="string($string-in)"/>
-						<xsl:with-param name="charsIn" select="'é'"/>
-						<xsl:with-param name="charsOut" select="'%C3%A9'"/>
-			</xsl:call-template>
+		<xsl:call-template name="replaceCharsInString">
+			<xsl:with-param name="stringIn" select="string($string-in)"/>
+			<xsl:with-param name="charsIn" select="'é'"/>
+			<xsl:with-param name="charsOut" select="'%C3%A9'"/>
+		</xsl:call-template>
 
 		</xsl:with-param><xsl:with-param name="charsIn" select="'ÿ'"/><xsl:with-param name="charsOut" select="'%C3%BF'"/></xsl:call-template>
 		</xsl:with-param><xsl:with-param name="charsIn" select="'þ'"/><xsl:with-param name="charsOut" select="'%C3%BE'"/></xsl:call-template>

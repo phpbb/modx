@@ -9,4 +9,3 @@ Changes since MODX 1.2.3
 
 [FEATURE] Added attribute text to the link tag. For text files.
 [FEATURE] Added attribute php-installer to the link tag. For php install files.
-[FEATURE] Added tag group requirements and tag php-version.

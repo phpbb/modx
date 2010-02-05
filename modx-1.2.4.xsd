@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <!-- MODX by the phpBB MOD Team XSD file v1.2.3 copyright 2005-2009 the phpBB MOD Team.
 	$Id$ -->
-<xs:schema id="mod" targetNamespace="modx-1.2.4-dev.xsd" xmlns:xmod="modx-1.2.4-dev.xsd"
-	xmlns="modx-1.2.4-dev.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+<xs:schema id="mod" targetNamespace="http://www.phpbb.com/mods/xml/modx-1.2.4.xsd" xmlns:xmod="http://www.phpbb.com/mods/xml/modx-1.2.4.xsd"
+	xmlns="http://www.phpbb.com/mods/xml/modx-1.2.4.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified"
 	xmlns:xdt="http://www.w3.org/2005/xpath-datatypes">
 	<xs:element name="mod" msdata:IsDataSet="true" msdata:Locale="en" msdata:EnforceConstraints="False">
@@ -28,14 +28,6 @@
 											<xs:attribute name="lang" form="unqualified" type="xs:language" use="required" />
 										</xs:extension>
 									</xs:simpleContent>
-								</xs:complexType>
-							</xs:element>
-
-							<xs:element name="requirements" minOccurs="0" maxOccurs="1">
-								<xs:complexType>
-									<xs:choice maxOccurs="unbounded">
-										<xs:element name="php-version" type="xs:string" minOccurs="0" maxOccurs="1" />
-									</xs:choice>
 								</xs:complexType>
 							</xs:element>
 

@@ -702,6 +702,7 @@ var enStrings = "dir=ltr\n" +
 "link-te=Template\n" +
 "link-txt=Text file\n" +
 "link-tl=Template lang\n" +
+"link-un=Uninstall instructions\n" +
 "atm=About this MOD";
 
 var box = codes_ll;
@@ -1784,6 +1785,9 @@ function toggle_edit(o)
 						</xsl:if>
 						<xsl:if test="@type = 'text'">
 							<span id="lang-link-txt[{generate-id()}]">Text file</span>:
+						</xsl:if>
+						<xsl:if test="@type = 'uninstall'">
+							<span id="lang-link-un[{generate-id()}]">Uninstall instructions</span>:
 						</xsl:if>
 					</strong>
 					&nbsp;<a href="{@href}"><xsl:value-of select="current()" /></a>

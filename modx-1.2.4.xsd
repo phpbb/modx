@@ -329,6 +329,7 @@
 			<xs:enumeration value="template" />
 			<xs:enumeration value="template-lang" />
 			<xs:enumeration value="text" />
+			<xs:enumeration value="uninstall" />
 		</xs:restriction>
 	</xs:simpleType>
 </xs:schema>

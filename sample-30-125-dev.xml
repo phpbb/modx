@@ -142,6 +142,10 @@
 			<file from="root/common.php" to="common.php" />
 		</copy>
 
+		<delete>
+			<file name="includes/functions.php" />
+		</delete>
+
 		<open src="index.php">
 			<edit>
 				<comment lang="en">Here is a comment</comment>

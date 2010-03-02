@@ -410,11 +410,11 @@ span.key { font-size:12px; line-height:14px; padding-bottom:2px; width:20px; bor
 
 dl.author-info dd { margin-left:112px; margin-bottom:8px; }
 .rtl dl.author-info dd { margin-left:112px; margin-bottom:8px; }
-ol#file-copy { padding:5px; margin-left:20px; margin-right:20px; margin-bottom:10px; }
-ol#file-copy li { margin-left:30px; margin-right:30px; vertical-align:top;}
-ol#file-copy span { font-weight:bold; }
-ol#file-copy dt {margin-right:5px; float:none !important }
-ol#file-copy dl {width:100%}
+ol#file-copy, ol#file-delete { padding:5px; margin-left:20px; margin-right:20px; margin-bottom:10px; }
+ol#file-copy li, ol#file-delete li { margin-left:30px; margin-right:30px; vertical-align:top;}
+ol#file-copy span, ol#file-delete span { font-weight:bold; }
+ol#file-copy dt, ol#file-delete dt {margin-right:5px; float:none !important }
+ol#file-copy dl, ol#file-delete dl {width:100%}
 h2#lang-fca, h2#lang-edts, h2#lang-diy, h2#lang-sql, h2#lang-installer-h2 { margin-left:5px; }
 
 /* Code block */
@@ -606,6 +606,11 @@ div.endMOD { padding:0 5px; }
 				copies_ll.push('<xsl:value-of select="generate-id()"/>');
 			</xsl:for-each>
 
+			var delete_ll = [];
+			<xsl:for-each select="mod:action-group/mod:delete/mod:file">
+				delete_ll.push('<xsl:value-of select="generate-id()"/>');
+			</xsl:for-each>
+
 			<xsl:text disable-output-escaping="yes">
 <![CDATA[
 // The following line from http://www.ryancooper.com/resources/keycode.asp
@@ -702,6 +707,13 @@ var enStrings = "dir=ltr\n" +
 "link-txt=Text file\n" +
 "link-tl=Template lang\n" +
 "link-un=Uninstall instructions\n" +
+"installer-h2=PHP install file\n" +
+"installer-exp1=This is a php install file that needs to be run in order to complete the installation.\n" +
+"installer-exp2=Point your browser to yourdomain.tld/this_file.php to run it.\n" +
+"ispt-int=Support in your language <strong>might</strong> be available at a <a href=\"http://www.phpbb.com/support/intl/\">international support site</a>.\n" +
+"del-heads=Delete files\n" +
+"del-head=Delete files\n" +
+"del-file=Delete\n" +
 "atm=About this MOD";
 
 var box = codes_ll;
@@ -711,6 +723,7 @@ var languages = ['en'];
 var arrClasCnt = [
 	['a-'	, authors_ll		],
 	['c-'	, copies_ll			],
+	['del-'	, delete_ll			],
 	['cm-'	, comments_ll		],
 	['opn'	, opens_ll			],
 	['cde-'	, codes_ll			],
@@ -1816,6 +1829,7 @@ function toggle_edit(o)
 					<p><span id="lang-lict">This MOD has been licensed under the following license:</span></p>
 					<p style='white-space:pre;'><a href="license.txt"><xsl:value-of select="mod:license" /></a></p>
 					<p><span id="lang-ispt">English support can be obtained at <a href="http://www.phpbb.com/mods/">http://www.phpbb.com/mods/</a> for released MODs.</span></p>
+					<p><span id="lang-ispt-int">Support in your language <strong>might</strong> be available at a <a href="http://www.phpbb.com/support/intl/">international support site</a>.</span></p>
 				</div>
 				<span class="corners-bottom"><span></span></span>
 			</div>
@@ -2073,6 +2087,11 @@ function toggle_edit(o)
 				<xsl:call-template name="give-filez"></xsl:call-template>
 			</xsl:for-each>
 		</xsl:if>
+		<xsl:if test="count(mod:delete) > 0">
+			<xsl:for-each select="mod:delete">
+				<xsl:call-template name="away-filez"></xsl:call-template>
+			</xsl:for-each>
+		</xsl:if>
 		<xsl:if test="count(mod:open) > 0">
 			<h2 id="lang-edts">Edits</h2>
 			<p><span class="key">s</span><span class="key">w</span><span class="key">x</span><span id="lang-edtt">Use your keyboard to navigate the code boxes. You may also hit '<em>s</em>' on your keyboard to go to the first code box.</span></p>
@@ -2268,6 +2287,26 @@ function toggle_edit(o)
 					<dl>
 						<dt><span id="lang-c-copy[{generate-id()}]">Copy:</span>&nbsp;<xsl:value-of select="@from" /></dt>
 						<dd><span id="lang-c-to[{generate-id()}]">To:</span>&nbsp;<xsl:value-of select="@to" /></dd>
+					</dl>
+				</li>
+			</xsl:for-each>
+		</ol>
+	</xsl:template>
+
+	<xsl:template name="away-filez">
+		<xsl:choose>
+			<xsl:when test="count(mod:file) > 1">
+				<h2 id="lang-del-heads">Delete files</h2>
+			</xsl:when>
+			<xsl:otherwise>
+				<h2 id="lang-del-head">Delete file</h2>
+			</xsl:otherwise>
+		</xsl:choose>
+		<ol id="file-delete">
+			<xsl:for-each select="mod:file">
+				<li>
+					<dl>
+						<dt><span id="lang-del-file[{generate-id()}]">Delete:</span>&nbsp;<xsl:value-of select="@name" /></dt>
 					</dl>
 				</li>
 			</xsl:for-each>

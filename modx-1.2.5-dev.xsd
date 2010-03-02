@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <!-- MODX by the phpBB MOD Team XSD file v1.2.3 copyright 2005-2009 the phpBB MOD Team.
-	$Id$ -->
-<xs:schema id="mod" targetNamespace="http://www.phpbb.com/mods/xml/modx-1.2.4.xsd" xmlns:xmod="http://www.phpbb.com/mods/xml/modx-1.2.4.xsd"
-	xmlns="http://www.phpbb.com/mods/xml/modx-1.2.4.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	$Id: modx-1.2.4.xsd 201 2010-02-24 15:09:09Z tumba25 $ -->
+<xs:schema id="mod" targetNamespace="modx-1.2.5-dev.xsd" xmlns:xmod="modx-1.2.5-dev.xsd"
+	xmlns="modx-1.2.5-dev.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified"
 	xmlns:xdt="http://www.w3.org/2005/xpath-datatypes">
 	<xs:element name="mod" msdata:IsDataSet="true" msdata:Locale="en" msdata:EnforceConstraints="False">
@@ -235,6 +235,7 @@
 									<xs:attribute name="src" form="unqualified" type="xs:string" use="required" />
 								</xs:complexType>
 							</xs:element>
+							<xs:element name="php-installer" type="xs:string" minOccurs="0" maxOccurs="1" />
 							<xs:element name="diy-instructions" nillable="true" minOccurs="0" maxOccurs="unbounded">
 								<xs:complexType>
 									<xs:simpleContent msdata:ColumnName="diy-instructions_Text" msdata:Ordinal="1">
@@ -325,7 +326,6 @@
 			<xs:enumeration value="dependency" />
 			<xs:enumeration value="language" />
 			<xs:enumeration value="parent" />
-			<xs:enumeration value="php-installer" />
 			<xs:enumeration value="template" />
 			<xs:enumeration value="template-lang" />
 			<xs:enumeration value="text" />

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- MODX by the phpBB MOD Team XSL file v1.2.4 copyright 2005-2010 the phpBB MOD Team.
 	This file is released under the GNU GPL version 2.  See license.txt.
-	$Id$ -->
+	$Id: modx.prosilver.en.xsl 211 2010-02-27 20:05:11Z tumba25 $ -->
 <!DOCTYPE xsl:stylesheet[
 	<!ENTITY nbsp "&#160;">
 ]>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:mod="http://www.phpbb.com/mods/xml/modx-1.2.4.xsd">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:mod="modx-1.2.5-dev.xsd">
 	<xsl:output method="html" omit-xml-declaration="no" indent="yes" />
 	<xsl:variable name="title" select="mod:mod/mod:header/mod:title" />
 	<xsl:variable name="version">
@@ -415,7 +415,7 @@ ol#file-copy li { margin-left:30px; margin-right:30px; vertical-align:top;}
 ol#file-copy span { font-weight:bold; }
 ol#file-copy dt {margin-right:5px; float:none !important }
 ol#file-copy dl {width:100%}
-h2#lang-fca, h2#lang-edts, h2#lang-diy, h2#lang-sql { margin-left:5px; }
+h2#lang-fca, h2#lang-edts, h2#lang-diy, h2#lang-sql, h2#lang-installer-h2 { margin-left:5px; }
 
 /* Code block */
 div.codebox {
@@ -1758,38 +1758,36 @@ function toggle_edit(o)
 
 		<ul class="link-group" id="link-group">
 			<xsl:for-each select="mod:link-group/mod:link">
-				<xsl:if test="@type != 'php-installer'">
-					<li lang="{@lang}">
-						<span class="link-group-lang"><xsl:value-of select="@lang" />&nbsp;</span>
-						<strong>
-							<xsl:if test="@type = 'contrib'">
-								<span id="lang-link-c[{generate-id()}]">Contrib</span>:
-							</xsl:if>
-							<xsl:if test="@type = 'dependency'">
-								<span id="lang-link-d[{generate-id()}]">Dependency</span>:
-							</xsl:if>
-							<xsl:if test="@type = 'language'">
-								<span id="lang-link-l[{generate-id()}]">Language</span>:
-							</xsl:if>
-							<xsl:if test="@type = 'parent'">
-								<span id="lang-link-p[{generate-id()}]">Parent</span>:
-							</xsl:if>
-							<xsl:if test="@type = 'template'">
-								<span id="lang-link-te[{generate-id()}]">Template</span>:
-							</xsl:if>
-							<xsl:if test="@type = 'template-lang'">
-								<span id="lang-link-tl[{generate-id()}]">Template lang</span>:
-							</xsl:if>
-							<xsl:if test="@type = 'text'">
-								<span id="lang-link-txt[{generate-id()}]">Text file</span>:
-							</xsl:if>
-							<xsl:if test="@type = 'uninstall'">
-								<span id="lang-link-un[{generate-id()}]">Uninstall instructions</span>:
-							</xsl:if>
-						</strong>
-						&nbsp;<a href="{@href}"><xsl:value-of select="current()" /></a>
-					</li>
-				</xsl:if>
+				<li lang="{@lang}">
+					<span class="link-group-lang"><xsl:value-of select="@lang" />&nbsp;</span>
+					<strong>
+						<xsl:if test="@type = 'contrib'">
+							<span id="lang-link-c[{generate-id()}]">Contrib</span>:
+						</xsl:if>
+						<xsl:if test="@type = 'dependency'">
+							<span id="lang-link-d[{generate-id()}]">Dependency</span>:
+						</xsl:if>
+						<xsl:if test="@type = 'language'">
+							<span id="lang-link-l[{generate-id()}]">Language</span>:
+						</xsl:if>
+						<xsl:if test="@type = 'parent'">
+							<span id="lang-link-p[{generate-id()}]">Parent</span>:
+						</xsl:if>
+						<xsl:if test="@type = 'template'">
+							<span id="lang-link-te[{generate-id()}]">Template</span>:
+						</xsl:if>
+						<xsl:if test="@type = 'template-lang'">
+							<span id="lang-link-tl[{generate-id()}]">Template lang</span>:
+						</xsl:if>
+						<xsl:if test="@type = 'text'">
+							<span id="lang-link-txt[{generate-id()}]">Text file</span>:
+						</xsl:if>
+						<xsl:if test="@type = 'uninstall'">
+							<span id="lang-link-un[{generate-id()}]">Uninstall instructions</span>:
+						</xsl:if>
+					</strong>
+					&nbsp;<a href="{@href}"><xsl:value-of select="current()" /></a>
+				</li>
 			</xsl:for-each>
 		</ul>
 		<hr />
@@ -2067,7 +2065,8 @@ function toggle_edit(o)
 					<xsl:for-each select="mod:sql">
 						<xsl:call-template name="give-sql"></xsl:call-template>
 					</xsl:for-each>
-				<span class="corners-bottom"><span></span></span></div>
+				<span class="corners-bottom"><span></span></span>
+			</div>
 		</xsl:if>
 		<xsl:if test="count(mod:copy) > 0">
 			<xsl:for-each select="mod:copy">
@@ -2075,15 +2074,35 @@ function toggle_edit(o)
 			</xsl:for-each>
 		</xsl:if>
 		<xsl:if test="count(mod:open) > 0">
-		<h2 id="lang-edts">Edits</h2>
-		<p><span class="key">s</span><span class="key">w</span><span class="key">x</span><span id="lang-edtt">Use your keyboard to navigate the code boxes. You may also hit '<em>s</em>' on your keyboard to go to the first code box.</span></p>
-		<div id="edits">
-			<div class="inner">
-				<xsl:for-each select="mod:open">
-					<xsl:call-template name="give-fileo"></xsl:call-template>
-				</xsl:for-each>
+			<h2 id="lang-edts">Edits</h2>
+			<p><span class="key">s</span><span class="key">w</span><span class="key">x</span><span id="lang-edtt">Use your keyboard to navigate the code boxes. You may also hit '<em>s</em>' on your keyboard to go to the first code box.</span></p>
+			<div id="edits">
+				<div class="inner">
+					<xsl:for-each select="mod:open">
+						<xsl:call-template name="give-fileo"></xsl:call-template>
+					</xsl:for-each>
+				</div>
 			</div>
-		</div>
+		</xsl:if>
+		<xsl:if test="count(mod:php-installer) > 0">
+			<h2 id="lang-installer-h2">PHP install file</h2>
+			<div class="mod-about">
+				<span class="corners-top"><span></span></span>
+					<div class="mod-about-padding">
+						<p>
+							<span id="lang-installer-exp1">This is a php install file that needs to be run in order to complete the installation.</span>
+							<br />
+							<span id="lang-installer-exp2">Point your browser to yourdomain.tld/this_file.php to run it.</span>
+						</p>
+						<div class="content">
+							<div class="codebox">
+								<div class="codeHead"><span id="lang-cde-c[{generate-id()}]">Code:</span><a href="#" onclick="select_code(this); return false;" class="codeSelect"><span id="lang-cde-sa[{generate-id()}]">Select All</span></a></div>
+								<div class="codePre"><pre id="{generate-id()}" dir="ltr"><xsl:value-of select="mod:php-installer" /></pre></div>
+							</div>
+						</div>
+					</div>
+				<span class="corners-bottom"><span></span></span>
+			</div>
 		</xsl:if>
 		<xsl:call-template name="give-manual" />
 	</xsl:template>

@@ -1,6 +1,8 @@
 Changes since MODX 1.2.4
 [FIX] Removed php-installer as link attribute and added it as a tag in the actions group.
 [FEATURE] Added delete tag group.
+[FEATURE] Added link to the ISP page at phpbb.com.
+[FEATURE] Added <remove> and <inline-remove> to the action group.
 
 Changes since MODX 1.2.3
 [FIX] Altered the urging to backup files before installing a MOD to also include the database Bug #52545

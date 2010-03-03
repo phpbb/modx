@@ -415,7 +415,7 @@ ol#file-copy li, ol#file-delete li { margin-left:30px; margin-right:30px; vertic
 ol#file-copy span, ol#file-delete span { font-weight:bold; }
 ol#file-copy dt, ol#file-delete dt {margin-right:5px; float:none !important }
 ol#file-copy dl, ol#file-delete dl {width:100%}
-h2#lang-fca, h2#lang-edts, h2#lang-diy, h2#lang-sql, h2#lang-installer-h2 { margin-left:5px; }
+h2#lang-fca, h2#lang-edts, h2#lang-diy, h2#lang-sql, h2#lang-installer-h2, h2#lang-del-head { margin-left:5px; }
 
 /* Code block */
 div.codebox {
@@ -534,8 +534,10 @@ div.endMOD { padding:0 5px; }
 			</xsl:for-each>
 
 			var finds_ll = [];
+			var removes_ll = [];
 			var regex_ll = [];
 			var ifinds_ll = [];
+			var iremoves_ll = [];
 			var iregex_ll = [];
 			var addafters_ll = [];
 			var iaddafters_ll = [];
@@ -549,6 +551,9 @@ div.endMOD { padding:0 5px; }
 			<xsl:for-each select="mod:action-group/mod:open/mod:edit">
 				<xsl:for-each select="mod:find">
 					finds_ll.push('<xsl:value-of select="generate-id()"/>');
+				</xsl:for-each>
+				<xsl:for-each select="mod:remove">
+					removes_ll.push('<xsl:value-of select="generate-id()"/>');
 				</xsl:for-each>
 				<xsl:if test="count(mod:comment) > 0">
 					comments_ll.push('<xsl:value-of select="generate-id()"/>');
@@ -576,6 +581,9 @@ div.endMOD { padding:0 5px; }
 						<xsl:if test="@type = 'regex'">
 							iregex_ll.push('<xsl:value-of select="generate-id()"/>');
 						</xsl:if>
+					</xsl:for-each>
+					<xsl:for-each select="mod:inline-remove">
+						iremoves_ll.push('<xsl:value-of select="generate-id()"/>');
 					</xsl:for-each>
 					<xsl:for-each select="mod:inline-find|mod:inline-action">
 						codes_ll.push('<xsl:value-of select="generate-id()"/>');
@@ -669,6 +677,8 @@ var enStrings = "dir=ltr\n" +
 "cm-cmt=Comments\n" +
 "fnd=Find\n" +
 "fndt=<strong>Tip:</strong> This may be a partial find and not the whole line.\n" +
+"remove=Find and Delete\n" +
+"removet=<strong>Tip:</strong> Find and delete this string.\n" +
 "rplw=Replace with\n" +
 "rplwt=<strong>Tip:</strong> Replace the preceding line(s) to find with the following lines.\n" +
 "aft=Add after\n" +
@@ -679,6 +689,8 @@ var enStrings = "dir=ltr\n" +
 "inct=<strong>Tip:</strong> This allows you to alter integers.\n" +
 "ifnd=In-line Find\n" +
 "ifndt=<strong>Tip:</strong> This is a partial match of a line for in-line operations.\n" +
+"iremove=In-line Find and Delete\n" +
+"iremovet=<strong>Tip:</strong> Find this sting in the line and delete it.\n" +
 "irplw=In-line Replace with\n" +
 "irplwt=\n" +
 "iaft=In-line Add after\n" +
@@ -712,7 +724,7 @@ var enStrings = "dir=ltr\n" +
 "installer-exp2=Point your browser to yourdomain.tld/this_file.php to run it.\n" +
 "ispt-int=Support in your language <strong>might</strong> be available at a <a href=\"http://www.phpbb.com/support/intl/\">international support site</a>.\n" +
 "del-heads=Delete files\n" +
-"del-head=Delete files\n" +
+"del-head=Delete file\n" +
 "del-file=Delete\n" +
 "atm=About this MOD";
 
@@ -729,12 +741,14 @@ var arrClasCnt = [
 	['cde-'	, codes_ll			],
 	['edt-'	, edits_ll			],
 	['fnd'	, finds_ll			],
+	['fnd'	, removes_ll			],
 	['regex', regex_ll			],
 	['rplw'	, replacewiths_ll	],
 	['aft'	, addafters_ll		],
 	['bef'	, addbefores_ll		],
 	['inc'	, increments_ll		],
 	['ifnd'	, ifinds_ll			],
+	['ifnd'	, iremoves_ll			],
 	['regex', iregex_ll			],
 	['irplw', ireplacewiths_ll	],
 	['iaft'	, iaddafters_ll		],
@@ -2188,7 +2202,7 @@ function toggle_edit(o)
 								</dl>
 							</div>
 						</xsl:if>
-						<xsl:for-each select="mod:find|mod:action|mod:inline-edit">
+						<xsl:for-each select="mod:find|mod:remove|mod:action|mod:inline-edit">
 							<xsl:if test="name() = 'find'">
 								<h4 id="lang-fnd[{generate-id()}]">Find</h4>
 								<p><span id="lang-fndt[{generate-id()}]"><strong>Tip:</strong> This may be a partial find and not the whole line.</span>
@@ -2196,6 +2210,14 @@ function toggle_edit(o)
 										<br /><em id="lang-regex[{generate-id()}]">This find contains an advanced feature known as regular expressions.</em>
 									</xsl:if>
 								</p>
+								<div class="codebox">
+									<div class="codeHead"><span id="lang-cde-c[{generate-id()}]">Code:</span><a href="#" onclick="select_code(this); return false;" class="codeSelect"><span id="lang-cde-sa[{generate-id()}]">Select All</span></a></div>
+									<div class="codePre"><pre id="{generate-id()}" dir="ltr"><xsl:value-of select="current()" /></pre></div>
+								</div>
+							</xsl:if>
+							<xsl:if test="name() = 'remove'">
+								<h4 id="lang-remove[{generate-id()}]" style="color: #FF0FFF;">Find and Delete</h4>
+								<p><span id="lang-removet[{generate-id()}]"><strong>Tip:</strong>  Find and delete this string.</span></p>
 								<div class="codebox">
 									<div class="codeHead"><span id="lang-cde-c[{generate-id()}]">Code:</span><a href="#" onclick="select_code(this); return false;" class="codeSelect"><span id="lang-cde-sa[{generate-id()}]">Select All</span></a></div>
 									<div class="codePre"><pre id="{generate-id()}" dir="ltr"><xsl:value-of select="current()" /></pre></div>
@@ -2225,7 +2247,7 @@ function toggle_edit(o)
 							</xsl:if>
 							<xsl:if test="name() = 'inline-edit'">
 								<div class="mod-inlineedit">
-									<xsl:for-each select="mod:inline-find|mod:inline-action|mod:inline-comment">
+									<xsl:for-each select="mod:inline-find|mod:inline-remove|mod:inline-action|mod:inline-comment">
 										<xsl:if test="name() = 'inline-find'">
 											<h5 id="lang-ifnd[{generate-id()}]">In-line Find</h5>
 											<p><span id="lang-ifndt[{generate-id()}]"><strong>Tip:</strong> This is a partial match of a line for in-line operations.</span>
@@ -2233,6 +2255,14 @@ function toggle_edit(o)
 													<br /><em id="lang-regex[{generate-id()}]">This find contains an advanced feature known as regular expressions.</em>
 												</xsl:if>
 											</p>
+											<div class="codebox">
+												<div class="codeHead"><span id="lang-cde-c[{generate-id()}]">Code:</span><a href="#" onclick="select_code(this); return false;" class="codeSelect"><span id="lang-cde-sa[{generate-id()}]">Select all</span></a></div>
+												<div class="codePre"><pre id="{generate-id()}" dir="ltr"><xsl:value-of select="current()" /></pre></div>
+											</div>
+										</xsl:if>
+										<xsl:if test="name() = 'inline-remove'">
+											<h5 id="lang-iremove[{generate-id()}]" style="color: #FF0FFF;">In-line Find and Delete</h5>
+											<p><span id="lang-iremovet[{generate-id()}]"><strong>Tip:</strong> Find this sting in the line and delete it.</span></p>
 											<div class="codebox">
 												<div class="codeHead"><span id="lang-cde-c[{generate-id()}]">Code:</span><a href="#" onclick="select_code(this); return false;" class="codeSelect"><span id="lang-cde-sa[{generate-id()}]">Select all</span></a></div>
 												<div class="codePre"><pre id="{generate-id()}" dir="ltr"><xsl:value-of select="current()" /></pre></div>

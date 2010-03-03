@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <!-- MODX by the phpBB MOD Team XSD file v1.2.3 copyright 2005-2009 the phpBB MOD Team.
 	$Id: modx-1.2.4.xsd 201 2010-02-24 15:09:09Z tumba25 $ -->
-<xs:schema id="mod" targetNamespace="modx-1.2.5-dev.xsd" xmlns:xmod="modx-1.2.5-dev.xsd"
-	xmlns="modx-1.2.5-dev.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+<xs:schema id="mod" targetNamespace="http://www.phpbb.com/mods/xml/modx-1.2.5-dev.xsd" xmlns:xmod="http://www.phpbb.com/mods/xml/modx-1.2.5-dev.xsd"
+	xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5-dev.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified"
 	xmlns:xdt="http://www.w3.org/2005/xpath-datatypes">
 	<xs:element name="mod" msdata:IsDataSet="true" msdata:Locale="en" msdata:EnforceConstraints="False">
@@ -197,6 +197,17 @@
 															</xs:simpleContent>
 														</xs:complexType>
 													</xs:element>
+
+								<xs:element name="remove" nillable="true" minOccurs="0" maxOccurs="1">
+									<xs:complexType>
+										<xs:simpleContent msdata:ColumnName="remove_Text" msdata:Ordinal="0">
+											<xs:extension base="xs:string">
+												<xs:attribute name="type" form="unqualified" type="xmod:findTypes" use="optional" />
+											</xs:extension>
+										</xs:simpleContent>
+									</xs:complexType>
+								</xs:element>
+
 													<xs:element name="action" nillable="true" minOccurs="0" maxOccurs="3">
 														<xs:complexType>
 															<xs:simpleContent msdata:ColumnName="action_Text" msdata:Ordinal="1">
@@ -218,6 +229,17 @@
 																		</xs:simpleContent>
 																	</xs:complexType>
 																</xs:element>
+
+									<xs:element name="inline-remove" nillable="true" minOccurs="0" maxOccurs="1">
+										<xs:complexType>
+											<xs:simpleContent msdata:ColumnName="inline-remove_Text" msdata:Ordinal="0">
+												<xs:extension base="xs:string">
+													<xs:attribute name="type" form="unqualified" type="xmod:findTypes" use="optional" />
+												</xs:extension>
+											</xs:simpleContent>
+										</xs:complexType>
+									</xs:element>
+
 																<xs:element name="inline-action" nillable="true" minOccurs="1" maxOccurs="3">
 																	<xs:complexType>
 																		<xs:simpleContent msdata:ColumnName="inline-action_Text" msdata:Ordinal="1">

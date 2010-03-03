@@ -158,6 +158,9 @@
 				<action type="after-add">text to be added on the line after</action>
 			</edit>
 			<edit>
+				<remove>text to delete</remove>
+			</edit>
+			<edit>
 				<find>text to find</find>
 				<action type="before-add">text to be added on the line before</action>
 			</edit>
@@ -170,6 +173,12 @@
 				<inline-edit>
 					<inline-find>find</inline-find>
 					<inline-action type="replace-with"> be replaced with</inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find>text to find and remove</find>
+				<inline-edit>
+					<inline-remove>find and remove</inline-remove>
 				</inline-edit>
 			</edit>
 			<edit>
@@ -197,10 +206,7 @@
 
 		<php-installer>install_mod.php</php-installer>
 
-		<diy-instructions lang="en">CHMOD foo.php and bar.php to 777
-Open in your web browser and follow the instructions in db_install.php</diy-instructions>
-
-		<diy-instructions lang="nl">CHMOD foo.php en bar.php naar 777
-Open je browser en volg de instructies in db_install.php</diy-instructions>
+		<diy-instructions lang="en">CHMOD foo.php and bar.php to 777</diy-instructions>
+		<diy-instructions lang="nl">CHMOD foo.php en bar.php naar 777</diy-instructions>
 	</action-group>
 </mod>

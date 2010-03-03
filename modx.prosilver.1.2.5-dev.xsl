@@ -678,7 +678,7 @@ var enStrings = "dir=ltr\n" +
 "fnd=Find\n" +
 "fndt=<strong>Tip:</strong> This may be a partial find and not the whole line.\n" +
 "remove=Find and Delete\n" +
-"removet=<strong>Tip:</strong> Find and delete this string.\n" +
+"removet=<strong>Tip:</strong> Find and delete this code.\n" +
 "rplw=Replace with\n" +
 "rplwt=<strong>Tip:</strong> Replace the preceding line(s) to find with the following lines.\n" +
 "aft=Add after\n" +
@@ -690,7 +690,7 @@ var enStrings = "dir=ltr\n" +
 "ifnd=In-line Find\n" +
 "ifndt=<strong>Tip:</strong> This is a partial match of a line for in-line operations.\n" +
 "iremove=In-line Find and Delete\n" +
-"iremovet=<strong>Tip:</strong> Find this sting in the line and delete it.\n" +
+"iremovet=<strong>Tip:</strong> Find this code in the line and delete it.\n" +
 "irplw=In-line Replace with\n" +
 "irplwt=\n" +
 "iaft=In-line Add after\n" +
@@ -2217,7 +2217,7 @@ function toggle_edit(o)
 							</xsl:if>
 							<xsl:if test="name() = 'remove'">
 								<h4 id="lang-remove[{generate-id()}]" style="color: #FF0FFF;">Find and Delete</h4>
-								<p><span id="lang-removet[{generate-id()}]"><strong>Tip:</strong>  Find and delete this string.</span></p>
+								<p><span id="lang-removet[{generate-id()}]"><strong>Tip:</strong>  Find and delete this code.</span></p>
 								<div class="codebox">
 									<div class="codeHead"><span id="lang-cde-c[{generate-id()}]">Code:</span><a href="#" onclick="select_code(this); return false;" class="codeSelect"><span id="lang-cde-sa[{generate-id()}]">Select All</span></a></div>
 									<div class="codePre"><pre id="{generate-id()}" dir="ltr"><xsl:value-of select="current()" /></pre></div>
@@ -2262,7 +2262,7 @@ function toggle_edit(o)
 										</xsl:if>
 										<xsl:if test="name() = 'inline-remove'">
 											<h5 id="lang-iremove[{generate-id()}]" style="color: #FF0FFF;">In-line Find and Delete</h5>
-											<p><span id="lang-iremovet[{generate-id()}]"><strong>Tip:</strong> Find this sting in the line and delete it.</span></p>
+											<p><span id="lang-iremovet[{generate-id()}]"><strong>Tip:</strong> Find this code in the line and delete it.</span></p>
 											<div class="codebox">
 												<div class="codeHead"><span id="lang-cde-c[{generate-id()}]">Code:</span><a href="#" onclick="select_code(this); return false;" class="codeSelect"><span id="lang-cde-sa[{generate-id()}]">Select all</span></a></div>
 												<div class="codePre"><pre id="{generate-id()}" dir="ltr"><xsl:value-of select="current()" /></pre></div>

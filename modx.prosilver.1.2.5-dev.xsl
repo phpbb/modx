@@ -721,7 +721,7 @@ var enStrings = "dir=ltr\n" +
 "link-un=Uninstall instructions\n" +
 "installer-h2=PHP install file\n" +
 "installer-exp1=This is a php install file that needs to be run in order to complete the installation.\n" +
-"installer-exp2=Point your browser to yourdomain.tld/this_file.php to run it.\n" +
+"installer-exp2=To run it, point your browser to, for example,\n" +
 "ispt-int=Support in your language <strong>might</strong> be available at a <a href=\"http://www.phpbb.com/support/intl/\">international support site</a>.\n" +
 "del-heads=Delete files\n" +
 "del-head=Delete file\n" +
@@ -2125,7 +2125,7 @@ function toggle_edit(o)
 						<p>
 							<span id="lang-installer-exp1">This is a php install file that needs to be run in order to complete the installation.</span>
 							<br />
-							<span id="lang-installer-exp2">Point your browser to yourdomain.tld/this_file.php to run it.</span>
+							<span id="lang-installer-exp2">To run it, point your browser to, for example,</span><span dir="ltr"> domain.tld/<xsl:value-of select="mod:php-installer" /></span>
 						</p>
 						<div class="content">
 							<div class="codebox">

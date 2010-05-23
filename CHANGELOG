@@ -1,3 +1,5 @@
+Changes since MODX 1.2.5
+
 Changes since MODX 1.2.4
 [FIX] Removed php-installer as link attribute and added it as a tag in the actions group.
 [FEATURE] Added delete tag group.

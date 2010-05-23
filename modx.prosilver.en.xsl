@@ -5,7 +5,7 @@
 <!DOCTYPE xsl:stylesheet[
 	<!ENTITY nbsp "&#160;">
 ]>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:mod="modx-1.2.6-dev.xsd">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:mod="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
 	<xsl:output method="html" omit-xml-declaration="no" indent="yes" />
 	<xsl:variable name="title" select="mod:mod/mod:header/mod:title" />
 	<xsl:variable name="version">
@@ -710,7 +710,7 @@ var enStrings = "dir=ltr\n" +
 "mhe-v=- Version\n" +
 "mh=MOD history\n" +
 "addtl-modx=Additional MODX files\n" +
-"noaddtl=This MOD has no additional MODX files.\n" +
+"imn=This MOD has no additional MODX files.\n" +
 "link-c=Contrib\n" +
 "link-d=Dependency\n" +
 "link-l=Language\n" +
@@ -720,11 +720,8 @@ var enStrings = "dir=ltr\n" +
 "link-tl=Template lang\n" +
 "link-un=Uninstall instructions\n" +
 "installer-h2=PHP install file\n" +
-"uninstaller-h2=PHP uninstall file\n" +
-"uninstaller-exp1=There is a PHP uninstall file that needs to be run in order to complete the removal of this MOD.\n" +
 "installer-exp1=There is a PHP install file that needs to be run in order to complete the installation.\n" +
 "installer-exp2=To run it point your browser to, for example,\n" +
-"installer-exp3=Delete this file after running it.\n" +
 "ispt-int=Support in your language <strong>might</strong> be available at a <a href=\"http://www.phpbb.com/support/intl/\">international support site</a>.\n" +
 "del-heads=Delete files\n" +
 "del-head=Delete file\n" +
@@ -1386,19 +1383,19 @@ function selectFirstBox()
 
 function mod_do_keypress(e)
 {
-	var key = (window.event && !window.event.ctrlKey && !window.event.MetaKey) ? window.event.keyCode : ((e && !e.ctrlKey) ? e.which : null);
+	var key = (window.event && !window.event.ctrlKey) ? window.event.keyCode : ((e && !e.ctrlKey) ? e.which : null);
 
 	switch (key)
 	{
 		case 88:	// X
-		case 107:	// plus (+)
+		case 187:	// plus (+)
 		case 190:	// period/greater-than (.>)
 			selectNextBox();
 			return false;
 		break;
 
 		case 87:	// W
-		case 109:	// minus (-)
+		case 189:	// minus (-)
 		case 188:	// comma/less-than (,<)
 			selectPrevBox();
 			return false;
@@ -1783,7 +1780,7 @@ function toggle_edit(o)
 		</xsl:for-each>
 		<h3 id="lang-addtl-modx">Additional MODX files</h3>
 		<xsl:if test="count(mod:link-group/mod:link) = 0">
-			<p id="lang-noaddtl">This MOD has no additional MODX files.</p>
+			<p id="lang-imn">This MOD has no additional MODX files.</p>
 		</xsl:if>
 
 		<ul class="link-group" id="link-group">
@@ -1820,7 +1817,6 @@ function toggle_edit(o)
 				</li>
 			</xsl:for-each>
 		</ul>
-
 		<hr />
 		<div id="modDisclaimer">
 			<h3><span id="lang-dcl">Disclaimer</span>&nbsp;<span id="lang-ont">and other notes</span></h3>
@@ -2121,34 +2117,15 @@ function toggle_edit(o)
 				</div>
 			</div>
 		</xsl:if>
-
 		<xsl:if test="count(mod:php-installer) > 0">
-			<xsl:for-each select="mod:php-installer">
-				<xsl:choose>
-					<xsl:when test="@uninstall = 'uninstall'">
-						<h2 id="lang-uninstaller-h2">PHP uninstall file</h2>
-					</xsl:when>
-					<xsl:otherwise>
-						<h2 id="lang-installeer-h2">PHP hmm install file</h2>
-					</xsl:otherwise>
-				</xsl:choose>
-			</xsl:for-each>
+			<h2 id="lang-installer-h2">PHP install file</h2>
 			<div class="mod-about">
 				<span class="corners-top"><span></span></span>
 					<div class="mod-about-padding">
 						<p>
-							<xsl:for-each select="mod:php-installer">
-								<xsl:choose>
-									<xsl:when test="@uninstall = 'uninstall'">
-											<span id="lang-uninstaller-exp1">There is a PHP uninstall file that needs to be run in order to complete the removal of this MOD.</span>
-									</xsl:when>
-									<xsl:otherwise>
-											<span id="lang-installer-exp1">There is a PHP install file that needs to be run in order to complete the installation.</span>
-									</xsl:otherwise>
-								</xsl:choose>
-							</xsl:for-each>
+							<span id="lang-installer-exp1">There is a PHP install file that needs to be run in order to complete the installation.</span>
 							<br />
-							<span id="lang-installer-exp2">To run it point your browser to, for example,</span><span dir="ltr"> domain.tld/phpBB3/<xsl:value-of select="mod:php-installer" /></span><br /><span id="lang-installer-exp3" style="font-weight: bold">Delete this file after running it.</span>
+							<span id="lang-installer-exp2">To run it point your browser to, for example,</span><span dir="ltr"> domain.tld/phpBB3/<xsl:value-of select="mod:php-installer" /></span>
 						</p>
 						<div class="content">
 							<div class="codebox">
@@ -2160,7 +2137,6 @@ function toggle_edit(o)
 				<span class="corners-bottom"><span></span></span>
 			</div>
 		</xsl:if>
-
 		<xsl:call-template name="give-manual" />
 	</xsl:template>
 

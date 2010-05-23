@@ -720,7 +720,7 @@ var enStrings = "dir=ltr\n" +
 "link-tl=Template lang\n" +
 "link-un=Uninstall instructions\n" +
 "installer-h2=PHP install file\n" +
-"installer-exp1=There is a PHP install file that needs to be run in order to complete the installation.\n" +
+"installer-exp1=There is a PHP install file that needs to be run in order to complete the installation.<br /><strong>Delete the install file after installation.</strong>\n" +
 "installer-exp2=To run it point your browser to, for example,\n" +
 "ispt-int=Support in your language <strong>might</strong> be available at a <a href=\"http://www.phpbb.com/support/intl/\">international support site</a>.\n" +
 "del-heads=Delete files\n" +
@@ -2123,7 +2123,7 @@ function toggle_edit(o)
 				<span class="corners-top"><span></span></span>
 					<div class="mod-about-padding">
 						<p>
-							<span id="lang-installer-exp1">There is a PHP install file that needs to be run in order to complete the installation.</span>
+							<span id="lang-installer-exp1">There is a PHP install file that needs to be run in order to complete the installation.<br /><strong>Delete the install file after installation.</strong></span>
 							<br />
 							<span id="lang-installer-exp2">To run it point your browser to, for example,</span><span dir="ltr"> domain.tld/phpBB3/<xsl:value-of select="mod:php-installer" /></span>
 						</p>

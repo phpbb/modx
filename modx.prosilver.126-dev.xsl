@@ -1386,19 +1386,19 @@ function selectFirstBox()
 
 function mod_do_keypress(e)
 {
-	var key = (window.event && !window.event.ctrlKey) ? window.event.keyCode : ((e && !e.ctrlKey) ? e.which : null);
+	var key = (window.event && !window.event.ctrlKey && !window.event.MetaKey) ? window.event.keyCode : ((e && !e.ctrlKey) ? e.which : null);
 
 	switch (key)
 	{
 		case 88:	// X
-		case 187:	// plus (+)
+		case 107:	// plus (+)
 		case 190:	// period/greater-than (.>)
 			selectNextBox();
 			return false;
 		break;
 
 		case 87:	// W
-		case 189:	// minus (-)
+		case 109:	// minus (-)
 		case 188:	// comma/less-than (,<)
 			selectPrevBox();
 			return false;

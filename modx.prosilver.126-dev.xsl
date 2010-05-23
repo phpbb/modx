@@ -710,7 +710,7 @@ var enStrings = "dir=ltr\n" +
 "mhe-v=- Version\n" +
 "mh=MOD history\n" +
 "addtl-modx=Additional MODX files\n" +
-"imn=This MOD has no additional MODX files.\n" +
+"noaddtl=This MOD has no additional MODX files.\n" +
 "link-c=Contrib\n" +
 "link-d=Dependency\n" +
 "link-l=Language\n" +
@@ -1780,7 +1780,7 @@ function toggle_edit(o)
 		</xsl:for-each>
 		<h3 id="lang-addtl-modx">Additional MODX files</h3>
 		<xsl:if test="count(mod:link-group/mod:link) = 0">
-			<p id="lang-imn">This MOD has no additional MODX files.</p>
+			<p id="lang-noaddtl">This MOD has no additional MODX files.</p>
 		</xsl:if>
 
 		<ul class="link-group" id="link-group">

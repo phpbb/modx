@@ -1,4 +1,5 @@
 Changes since MODX 1.2.5
+[FIX] Language files contained "lang-noaddtl", should have been "noaddtl" and the xsl file had them as lang-imn. Bug # 
 
 Changes since MODX 1.2.4
 [FIX] Removed php-installer as link attribute and added it as a tag in the actions group.

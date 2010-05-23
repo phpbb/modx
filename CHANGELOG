@@ -1,6 +1,9 @@
 Changes since MODX 1.2.5
 [FIX] Language files contained "lang-noaddtl", should have been "noaddtl" and the xsl file had them as lang-imn. Bug #59645
-[FIX] Added "Delete the install file after installation." Bug #59075
+[FIX] Added language string "installer-exp3=Delete this file after running it." Bug #59075
+[CHANGE] Added language string "uninstaller-h2=PHP uninstall file"
+[CHANGE] Added language string "uninstaller-exp1=There is a PHP uninstall file that needs to be run in order to complete the removal of this MOD."
+[FEATURE] Added attribute uninstall="uninstall" to php-installer. Bug #58535
 
 Changes since MODX 1.2.4
 [FIX] Removed php-installer as link attribute and added it as a tag in the actions group.

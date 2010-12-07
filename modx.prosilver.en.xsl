@@ -1425,7 +1425,7 @@ function change_dbms($form)
 		'mssql',
 		'oracle',
 		'postgres',
-		'sqllite'
+		'sqlite'
 	];
 	$exists = 0;
 	$tags = document.getElementsByTagName('dbms');
@@ -1520,7 +1520,7 @@ function sql_dropdown()
 		'mssql',
 		'oracle',
 		'postgres',
-		'sqllite'
+		'sqlite'
 	];
 	$options = [];
 	$ie_options = [];
@@ -2083,7 +2083,7 @@ function toggle_edit(o)
 						<option value="mssql">MSSQL</option>
 						<option value="oracle">Oracle</option>
 						<option value="postgres">Postgres</option>
-						<option value="sqllite">SQLLite</option>
+						<option value="sqlite">SQLite</option>
 					</select>
 				</fieldset>
 			</form>

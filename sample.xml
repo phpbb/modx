@@ -20,29 +20,29 @@
 				<realname>David Smith</realname>
 				<username phpbbcom="no">smithy_dll</username>
 				<homepage>http://www.phpbb.com/mods/modx/</homepage>
-      		<contributions-group>
-      		  <contributions status="past" from="2006-01-01" to="2007-11-01" position="Developer"/>
-      		</contributions-group>
+				<contributions-group>
+					<contributions status="past" from="2006-01-01" to="2007-11-01" position="Developer"/>
+				</contributions-group>
 			</author>
 			<author>
 				<realname>Eric Faerber</realname>
 				<username>wGEric</username>
-      		<contributions-group>
-      		  <contributions status="past" from="2006-01-01" to="2008-01-11" position="Developer"/>
-      		  <contributions status="current" from="2008-01-11" position="Tester"/>
-      		</contributions-group>
+				<contributions-group>
+					<contributions status="past" from="2006-01-01" to="2008-01-11" position="Developer"/>
+					<contributions status="current" from="2008-01-11" position="Tester"/>
+				</contributions-group>
 			</author>
 			<author>
-			    <username>paul</username>
-      		<contributions-group>
-      		  <contributions status="past" from="2008-01-11" to="2009-05-01" position="Developer"></contributions>
-      		</contributions-group>
+				<username>paul</username>
+				<contributions-group>
+					<contributions status="past" from="2008-01-11" to="2009-05-01" position="Developer"></contributions>
+				</contributions-group>
 			</author>
 			<author>
-			    <username>tumba25</username>
-      		<contributions-group>
-      		  <contributions status="current" from="2009-09-12" position="Developer"></contributions>
-      		</contributions-group>
+				<username>tumba25</username>
+				<contributions-group>
+					<contributions status="current" from="2009-09-12" position="Developer"></contributions>
+				</contributions-group>
 			</author>
 		</author-group>
 

@@ -709,8 +709,8 @@ var enStrings = "dir=ltr\n" +
 "regex=This find contains an advanced feature known as regular expressions.\n" +
 "mhe-v=- Version\n" +
 "mh=MOD history\n" +
-"addtl-modx=Additional MODX files\n" +
-"imn=This MOD has no additional MODX files.\n" +
+"addtl-modx=Additional file(s)\n" +
+"imn=This MOD has no additional file(s).\n" +
 "link-c=Contrib\n" +
 "link-d=Dependency\n" +
 "link-l=Language\n" +
@@ -1778,9 +1778,9 @@ function toggle_edit(o)
 		<xsl:for-each select="../mod:action-group">
 			<xsl:call-template name="give-files-included"></xsl:call-template>
 		</xsl:for-each>
-		<h3 id="lang-addtl-modx">Additional MODX files</h3>
+		<h3 id="lang-addtl-modx">Additional file(s)</h3>
 		<xsl:if test="count(mod:link-group/mod:link) = 0">
-			<p id="lang-imn">This MOD has no additional MODX files.</p>
+			<p id="lang-imn">This MOD has no additional file(s).</p>
 		</xsl:if>
 
 		<ul class="link-group" id="link-group">

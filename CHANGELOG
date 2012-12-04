@@ -1,5 +1,6 @@
 Changes since MODX 1.2.5
 [Feature] Ticket #62896 Added github tag to "About this MOD". To link to the MOD repo at github.
+[Fix] Ticket #62844 "Find and Delete" and "In-line Find and Delete was not translated.
 
 Changes since MODX 1.2.4
 [Fix] Removed php-installer as link attribute and added it as a tag in the actions group.

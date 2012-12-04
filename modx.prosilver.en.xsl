@@ -5,7 +5,7 @@
 <!DOCTYPE xsl:stylesheet[
 	<!ENTITY nbsp "&#160;">
 ]>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:mod="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:mod="https://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
 	<xsl:output method="html" omit-xml-declaration="no" indent="yes" />
 	<xsl:variable name="title" select="mod:mod/mod:header/mod:title" />
 	<xsl:variable name="version">
@@ -646,6 +646,7 @@ var enStrings = "dir=ltr\n" +
 "a-e=Email:\n" +
 "a-n=Name:\n" +
 "a-h=WWW:\n" +
+"a-git=Github:\n" +
 "a-c=Contributions:\n" +
 "a-c-f=From\n" +
 "a-c-t=to\n" +
@@ -1749,6 +1750,10 @@ function toggle_edit(o)
 								</p>
 							</xsl:if>
 						</dd>
+					</xsl:if>
+					<xsl:if test="mod:github != 'N/A' and mod:github != 'n/a' and mod:github != ''">
+						<dt id="lang-a-git[{generate-id()}]">Github:</dt>
+						<dd name="author-dd"><a href="{mod:github}" dir="ltr"><xsl:value-of select="mod:github" /></a></dd>
 					</xsl:if>
 				</dl>
 				<span class="corners-bottom"><span></span></span>

@@ -1441,7 +1441,7 @@ function change_dbms($form)
 	{
 		for ($i = 0; $i < $tags.length; $i++)
 		{
-			if (!($dbms = $tags[$i].attributes['type'].nodeValue))
+			if (!($dbms = $tags[$i].attributes['type'].value))
 			{
 				continue;
 			}
@@ -1473,7 +1473,7 @@ function sql_display($value)
 	// show the dbms of type we have selected, hide all others except for non dbms specific
 	for ($i = 0; $i < $tags.length; $i++)
 	{
-		if (!($dbms = $tags[$i].attributes['type'].nodeValue))
+		if (!($dbms = $tags[$i].attributes['type'].value))
 		{
 			continue;
 		}
@@ -1531,7 +1531,7 @@ function sql_dropdown()
 	// Show the dbms of type we have selected, hide all others except for non dbms specific
 	for ($i = 0; $i < $tags.length; $i++)
 	{
-		if (!($dbms = $tags[$i].attributes['type'].nodeValue))
+		if (!($dbms = $tags[$i].attributes['type'].value))
 		{
 			continue;
 		}

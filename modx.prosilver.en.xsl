@@ -811,6 +811,9 @@ function load_language()
 	send('', host + currentLanguage + '.txt?rnd=' + cachernd);
 }
 
+/**
+* From http://stackoverflow.com/questions/1280903/javascript-ie-and-getelementsbyclassname-problems/8472488#8472488
+*/
 if (typeof document.getElementsByClassName != 'function')
 {
 	document.getElementsByClassName = function()

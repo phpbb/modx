@@ -781,6 +781,8 @@ function changeLanguage(langCode)
 		applyLanguage(enStrings.split("\n"));
 	}
 	xslLanguage(langCode);
+
+	show_title(langCode);
 }
 
 function load_languages()
@@ -807,6 +809,68 @@ function load_language()
 	$output = 'load_language';
 	cachernd = parseInt(Math.random() * 99999999); // cache
 	send('', host + currentLanguage + '.txt?rnd=' + cachernd);
+}
+
+if (typeof document.getElementsByClassName != 'function')
+{
+	document.getElementsByClassName = function()
+	{
+		var elms = document.getElementsByTagName('*');
+		var ei = new Array();
+		for (i = 0; i < elms.length; i++)
+		{
+			if (elms[i].getAttribute('class'))
+			{
+				ecl = elms[i].getAttribute('class').split(' ');
+				for (j = 0; j < ecl.length; j++)
+				{
+					if (ecl[j].toLowerCase() == arguments[0].toLowerCase())
+					{
+						ei.push(elms[i]);
+					}
+				}
+			}
+			else if (elms[i].className)
+			{
+				ecl = elms[i].className.split(' ');
+				for (j = 0; j < ecl.length; j++)
+				{
+					if (ecl[j].toLowerCase() == arguments[0].toLowerCase())
+					{
+						ei.push(elms[i]);
+					}
+				}
+			}
+		}
+		return ei;
+	}
+}
+
+function show_title(langCode)
+{
+	var sel_title = document.getElementById('title-' + langCode);
+
+	if (sel_title == null)
+	{
+		// A title in English is required.
+		sel_title = document.getElementById('title-en')
+
+		if (sel_title == null)
+		{
+			// No title in English or the selected language.
+			return;
+		}
+	}
+
+	var hide_title = document.getElementsByClassName('hide-title');
+
+	for (var i = 0; i < hide_title.length; i++)
+	{
+		hide_title[i].style.display='none';
+	}
+
+	sel_title.style.display='inline';
+	document.title = "phpBB MOD » " + sel_title.innerHTML;
 }
 
 /*****************
@@ -1629,7 +1693,14 @@ function toggle_edit(o)
 		<div id="debug"></div>
 		<div id="wrap">
 			<div id="page-header">
-				<h1><span id="lang-h1">Installation instructions for</span> '<xsl:value-of select="$title" />' <span id="lang-V">version</span>&nbsp;<xsl:value-of select="$version" /></h1>
+				<h1>
+					<span id="lang-h1">Installation instructions for</span>
+					<span class="hide-title" lang="{@lang}"> '<xsl:value-of select="$title" />' </span>
+					<xsl:for-each select="mod:header/mod:title">
+						<span class="hide-title" lang="{@lang}" id="title-{@lang}" style="display: none;"> '<xsl:value-of select="current()" />' </span>
+					</xsl:for-each>
+					<span id="lang-V">version</span>&nbsp;<xsl:value-of select="$version" />
+				</h1>
 				<form method="post" action="" id="lang-selector" style="display: none;">
 				<fieldset class="nobg">
 					<label for="language"><span id="lang-slg">Select language:</span></label>&nbsp;<select id="language" name="language" onclick="load_languages()"><option value="en" selected="selected">English</option></select>
@@ -1667,6 +1738,7 @@ function toggle_edit(o)
 		</body>
 		</html>
 	</xsl:template>
+
 
 	<xsl:template name="give-header">
 		<fieldset>

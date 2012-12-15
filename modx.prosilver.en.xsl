@@ -23,7 +23,7 @@
 /*  phpBB 3.0 Admin Style Sheet
 	–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 	Original author:	subBlue ( http://www.subblue.com/ )
-	Copyright 2007 phpBB Group ( http://www.phpbb.com/ )
+	Copyright 2007 phpBB Group ( https://www.phpbb.com/ )
 	–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 */
 
@@ -624,7 +624,7 @@ div.endMOD { padding:0 5px; }
 // The following line from http://www.ryancooper.com/resources/keycode.asp
 document.onkeydown = mod_do_keypress;
 
-var host = "http://www.phpbb.com/mods/modx/i18n/";
+var host = "https://www.phpbb.com/mods/modx/i18n/";
 
 var enStrings = "dir=ltr\n" +
 "h1=Installation instructions for\n" +
@@ -655,9 +655,9 @@ var enStrings = "dir=ltr\n" +
 "icf=Included files\n" +
 "icfn=No files have been included with this MOD.\n" +
 "dcl=Disclaimer\n" +
-"dclt=For security purposes, please check: <a href=\"http://www.phpbb.com/mods/\">http://www.phpbb.com/mods/</a> for the latest version of this MOD. Downloading this MOD from other sites could cause malicious code to enter into your phpBB Forum. As such, phpBB will not offer support for MODs not offered in our MODs database, located at: <a href=\"http://www.phpbb.com/mods/\">http://www.phpbb.com/mods/</a>\n" +
+"dclt=For security purposes, please check: <a href=\"https://www.phpbb.com/mods/\">https://www.phpbb.com/mods/</a> for the latest version of this MOD. Downloading this MOD from other sites could cause malicious code to enter into your phpBB Forum. As such, phpBB will not offer support for MODs not offered in our MODs database, located at: <a href=\"https://www.phpbb.com/mods/\">https://www.phpbb.com/mods/</a>\n" +
 "isp=and English support\n" +
-"ispt=English support can be obtained at <a href=\"http://www.phpbb.com/mods/\">http://www.phpbb.com/mods/</a> for released MODs.\n" +
+"ispt=English support can be obtained at <a href=\"https://www.phpbb.com/mods/\">https://www.phpbb.com/mods/</a> for released MODs.\n" +
 "ant=Author notes:\n" +
 "lic=License\n" +
 "lict=This MOD has been licensed under the following license:\n" +
@@ -723,7 +723,7 @@ var enStrings = "dir=ltr\n" +
 "installer-h2=PHP install file\n" +
 "installer-exp1=There is a PHP install file that needs to be run in order to complete the installation.\n" +
 "installer-exp2=To run it point your browser to, for example,\n" +
-"ispt-int=Support in your language <strong>might</strong> be available at a <a href=\"http://www.phpbb.com/support/intl/\">international support site</a>.\n" +
+"ispt-int=Support in your language <strong>might</strong> be available at a <a href=\"https://www.phpbb.com/support/intl/\">international support site</a>.\n" +
 "del-heads=Delete files\n" +
 "del-head=Delete file\n" +
 "del-file=Delete\n" +
@@ -1905,7 +1905,7 @@ function toggle_edit(o)
 			<div class="mod-about">
 				<span class="corners-top"><span></span></span>
 				<div class="mod-about-padding">
-					<p><span id="lang-dclt">For security purposes, please check: <a href="http://www.phpbb.com/mods/">http://www.phpbb.com/mods/</a> for the latest version of this MOD. Downloading this MOD from other sites could cause malicious code to enter into your phpBB Forum. As such, phpBB will not offer support for MODs not offered in our MODs database, located at: <a href="http://www.phpbb.com/mods/">http://www.phpbb.com/mods/</a></span></p>
+					<p><span id="lang-dclt">For security purposes, please check: <a href="https://www.phpbb.com/mods/">https://www.phpbb.com/mods/</a> for the latest version of this MOD. Downloading this MOD from other sites could cause malicious code to enter into your phpBB Forum. As such, phpBB will not offer support for MODs not offered in our MODs database, located at: <a href="https://www.phpbb.com/mods/">https://www.phpbb.com/mods/</a></span></p>
 					<p><span id="lang-ontt1">Before adding this MOD to your forum, you should back up all files and databases related to this MOD.</span></p>
 					<p><span id="lang-ontt2">This MOD was designed for phpBB</span><xsl:text> </xsl:text><xsl:value-of select="mod:installation/mod:target-version" /><xsl:text> </xsl:text>&nbsp;<span id="lang-ontt3">and may not function as stated on other phpBB versions. MODs for phpBB 3.0 will <strong>not</strong> work on phpBB 2.0 and vice versa.</span></p>
 					<xsl:for-each select="./mod:mod-version">
@@ -1924,8 +1924,8 @@ function toggle_edit(o)
 				<div class="mod-about-padding">
 					<p><span id="lang-lict">This MOD has been licensed under the following license:</span></p>
 					<p style='white-space:pre;'><a href="license.txt"><xsl:value-of select="mod:license" /></a></p>
-					<p><span id="lang-ispt">English support can be obtained at <a href="http://www.phpbb.com/mods/">http://www.phpbb.com/mods/</a> for released MODs.</span></p>
-					<p><span id="lang-ispt-int">Support in your language <strong>might</strong> be available at a <a href="http://www.phpbb.com/support/intl/">international support site</a>.</span></p>
+					<p><span id="lang-ispt">English support can be obtained at <a href="https://www.phpbb.com/mods/">https://www.phpbb.com/mods/</a> for released MODs.</span></p>
+					<p><span id="lang-ispt-int">Support in your language <strong>might</strong> be available at a <a href="https://www.phpbb.com/support/intl/">international support site</a>.</span></p>
 				</div>
 				<span class="corners-bottom"><span></span></span>
 			</div>
@@ -1964,10 +1964,10 @@ function toggle_edit(o)
 													<xsl:with-param name="string-in" select="string($authorurl)"/>
 												</xsl:call-template>
 											</xsl:variable>
-											<dd name="author-dd"><a dir="ltr" href="http://www.phpbb.com/community/memberlist.php?mode=viewprofile&amp;un={$operaurl}"><xsl:value-of select="$authorname" /></a></dd>
+											<dd name="author-dd"><a dir="ltr" href="https://www.phpbb.com/community/memberlist.php?mode=viewprofile&amp;un={$operaurl}"><xsl:value-of select="$authorname" /></a></dd>
 										</xsl:when>
 										<xsl:otherwise>
-											<dd name="author-dd"><a dir="ltr" href="http://www.phpbb.com/community/memberlist.php?mode=viewprofile&amp;un={$authorurl}"><xsl:value-of select="$authorname" /></a></dd>
+											<dd name="author-dd"><a dir="ltr" href="https://www.phpbb.com/community/memberlist.php?mode=viewprofile&amp;un={$authorurl}"><xsl:value-of select="$authorname" /></a></dd>
 										</xsl:otherwise>
 
 									</xsl:choose>

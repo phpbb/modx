@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
 <!--For security purposes, please check: https
 ://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at https://www.phpbb.com/mods/-->
-<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6-RC1.xsd">
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
 	<header>
 		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
 
@@ -124,6 +124,16 @@
 				<rev-version>1.2.5</rev-version>
 				<changelog lang="en">
 					<change>Updated the sample MODX file for the new MODX 1.2.5 release</change>
+				</changelog>
+				<changelog lang="nl">
+					<change>De voorbeeld MODX MODX geupdated voor de nieuwe MODX 1.2.5 release</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2012-12-15</date>
+				<rev-version>1.2.6</rev-version>
+				<changelog lang="en">
+					<change>Updated the sample MODX file for the new MODX 1.2.6 release</change>
 				</changelog>
 				<changelog lang="nl">
 					<change>De voorbeeld MODX MODX geupdated voor de nieuwe MODX 1.2.5 release</change>

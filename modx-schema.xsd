@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <!-- MODX by the phpBB MOD Team XSD file v1.2.3 copyright 2005-2009 the phpBB MOD Team.
 	$Id: modx-1.2.4.xsd 201 2010-02-24 15:09:09Z tumba25 $ -->
-<xs:schema id="mod" targetNamespace="https://www.phpbb.com/mods/xml/modx-1.2.6-RC1.xsd" xmlns:xmod="https://www.phpbb.com/mods/xml/modx-1.2.6-RC1.xsd"
-	xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6-RC1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+<xs:schema id="mod" targetNamespace="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd" xmlns:xmod="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd"
+	xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified"
 	xmlns:xdt="http://www.w3.org/2005/xpath-datatypes">
 	<xs:element name="mod" msdata:IsDataSet="true" msdata:Locale="en" msdata:EnforceConstraints="False">

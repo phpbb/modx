@@ -1,4 +1,7 @@
 Changes since MODX 1.2.5
+[Fix] Ticket #EXTTOOLS-637 Some MODX files still said version 1.2.5 or older.
+
+Changes since MODX 1.2.5
 [Feature] Ticket #62896 Added github tag to "About this MOD". To link to the MOD repo at github.
 [Fix] Ticket #62844 "Find and Delete" and "In-line Find and Delete was not translated.
 [Fix] nodeValue is deprecated, replaced with value.

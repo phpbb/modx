@@ -48,7 +48,7 @@
 			</author>
 		</author-group>
 
-		<mod-version>1.2.5</mod-version>
+		<mod-version>1.2.6</mod-version>
 
 		<installation>
 			<level>easy</level>
@@ -136,7 +136,7 @@
 					<change>Updated the sample MODX file for the new MODX 1.2.6 release</change>
 				</changelog>
 				<changelog lang="nl">
-					<change>De voorbeeld MODX MODX geupdated voor de nieuwe MODX 1.2.5 release</change>
+					<change>De voorbeeld MODX MODX geupdated voor de nieuwe MODX 1.2.6 release</change>
 				</changelog>
 			</entry>
 		</history>
